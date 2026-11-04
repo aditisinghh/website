@@ -292,6 +292,17 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
 .kg-pad button{width:58px;height:52px;border-radius:14px;border:0;background:rgb(255 255 255 / .14);color:#FAF6EE;font-size:20px;touch-action:none;user-select:none;-webkit-user-select:none}
 .kg-pad button:active{background:rgb(255 255 255 / .3)}
 @media (pointer:coarse){.kg-pad{display:flex}}
+/* how I work + hiring */
+.hw-h{font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-.02em;margin-top:6px}
+.hw{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:hw}
+.hw li{counter-increment:hw;display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:12px;row-gap:2px;align-items:start;font-size:15.5px;line-height:1.45}
+.hw li::before{content:counter(hw);grid-row:span 3;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--hue);color:var(--on);font-family:var(--display);font-weight:800}
+.hw b{font-family:var(--display);font-size:17.5px}
+.hw span{color:var(--muted)}
+.hw button{justify-self:start;border:0;background:none;padding:0;font:inherit;font-size:14px;font-weight:600;color:color-mix(in srgb,var(--hue) 75%,var(--ink));cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.hw-cta{border-radius:18px;padding:16px 18px;background:var(--ink);color:var(--sheet);display:flex;flex-direction:column;gap:6px;font-size:16px}
+.hw-cta span{font-size:14.5px;opacity:.85}
+.hw-cta a{color:inherit}
 /* ask the dashboard */
 .askdash{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:12px;align-items:stretch;margin-top:4px}
 .askdash small{display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-bottom:6px;font-family:var(--body)}
@@ -366,6 +377,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
       <a href="#" data-home data-jump="latest">all stories</a>
       <button type="button" data-open="about">about me</button>
       <a class="li" href="https://www.linkedin.com/in/aditisingh939/" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M6.9 9.6h2.6V18H6.9zM8.2 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM11.1 9.6h2.5v1.2c.4-.7 1.2-1.4 2.6-1.4 2.7 0 3.2 1.8 3.2 4.1V18h-2.6v-4c0-1 0-2.2-1.4-2.2s-1.6 1-1.6 2.1V18h-2.6z"/></svg>LinkedIn</a>
+      <a href="Aditi-Singh-Resume.pdf" target="_blank" rel="noopener">résumé</a>
       <button type="button" id="editBtn" aria-pressed="false">✎ edit notes</button>
       <button type="button" id="searchBtn" aria-label="Search stories (Command K)">search <kbd>⌘K</kbd></button>
       <button type="button" id="themeBtn" aria-label="Change theme">◐</button>
@@ -649,8 +661,17 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
   ];
   const about={c:'mustard',tag:'about',t:'Hi, I\'m Aditi',d:'Product person, MBA student, coffee drinker.',
     body:`<p>I work on products, usually somewhere between the tech, the business and the people using it. Right now I'm at Wadanova and finishing my MBA at MIT Sloan. Before that I spent four years at Deloitte and studied CS and economics at Rutgers.</p>
-    <p>This notebook is where I write about what I'm building and what I'm into. If something here interests you, I'd love to hear from you.</p>
-    <p><b>aditi__s@mit.edu</b> · <a href="https://www.linkedin.com/in/aditisingh939/">LinkedIn</a></p>`};
+    <p>This notebook is where I write about what I'm building and what I'm into.</p>
+    <h3 class="hw-h">How I work</h3>
+    <ol class="hw">
+      <li class="c-plum"><b>Talk to customers before writing a spec.</b><span>Every good requirement I've written started with a conversation.</span><button type="button" data-page="startup">see it at Wadanova →</button></li>
+      <li class="c-cobalt"><b>Go see the work.</b><span>Nine hospitals taught me more than any requirements doc.</span><button type="button" data-page="pm">see it at Deloitte →</button></li>
+      <li class="c-rust"><b>Start with the people, not the tech.</b><span>An AI agent is only useful if it answers the questions a team actually asks.</span><button type="button" data-page="ibm">see it at IBM →</button></li>
+      <li class="c-teal"><b>Make the tradeoffs visible.</b><span>Clear requirements and honest comparisons are how a $21M decision gets made with confidence.</span><button type="button" data-page="pm">see the radio evaluation →</button></li>
+      <li class="c-forest"><b>Ship the fun part first.</b><span>Get something real in people's hands, then build from what they use.</span><button type="button" data-page="kart">see the Mario Kart →</button></li>
+    </ol>
+    <p>With a CS degree, four years at Deloitte, an AI agent at IBM and a founding role at a startup, I'm happiest where the technical, the business and the people questions meet.</p>
+    <div class="hw-cta"><b>Open to PM roles in tech &amp; AI.</b> If you're hiring, I'd love to talk.<span><b>aditi__s@mit.edu</b> · <a href="https://www.linkedin.com/in/aditisingh939/">LinkedIn</a> · <a href="Aditi-Singh-Resume.pdf" target="_blank" rel="noopener">résumé (PDF)</a></span></div>`};
 
   const stories=S.filter(s=>!s.now&&!s.about);
   const pops=stories.filter(s=>!s.page);
@@ -658,7 +679,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
   const tile=(s,extra='')=>`<button type="button" class="story ${extra||s.size} c-${s.c}" style="--tilt:${s.tilt}" ${attrs(s)}><span class="pen" data-pen>✎ note</span><span class="tag">${s.tag}</span>${s.art&&!extra?kartSVG():''}<h2>${s.t}</h2><span class="read"><span>${s.d}</span><span class="flag">${s.page?'full story ↗':s.time+' →'}</span></span></button>`;
 
   document.getElementById('cover').innerHTML=S.map(s=>{
-    if(s.now) return `<div class="story now ${s.size}" style="cursor:default"><span class="pen" data-pen>✎ note</span><span class="nowhead"><i class="live" aria-hidden="true"></i>right now</span><ul class="nowl"><li class="c-plum"><em>building</em><b>Wadanova</b></li><li class="c-cobalt"><em>studying</em><b>MBA at MIT Sloan</b></li><li class="c-rust"><em>TAing</em><b>Comms &amp; PM Lab</b></li><li class="c-teal"><em>learning</em><b>Portuguese, fast</b></li><li class="c-forest"><em>packing for</em><b>3 weeks in Brazil</b></li><li class="c-mustard"><em>drinking</em><b>a latte, obviously</b></li></ul></div>`;
+    if(s.now) return `<div class="story now ${s.size}" style="cursor:default"><span class="pen" data-pen>✎ note</span><span class="nowhead"><i class="live" aria-hidden="true"></i>right now</span><ul class="nowl"><li class="c-plum"><em>building</em><b>Wadanova</b></li><li class="c-cobalt"><em>studying</em><b>MBA at MIT Sloan</b></li><li class="c-rust"><em>TAing</em><b>Comms &amp; PM Lab</b></li><li class="c-teal"><em>learning</em><b>Portuguese, fast</b></li><li class="c-forest"><em>packing for</em><b>3 weeks in Brazil</b></li><li class="c-mustard"><em>drinking</em><b>a latte, obviously</b></li><li class="c-plum"><em>looking for</em><b>PM roles in tech &amp; AI</b></li></ul></div>`;
     if(s.about) return `<button type="button" class="story ${s.size} c-${s.c}" data-hi aria-label="Say hi: copy my email"><span class="pen" data-pen>✎</span><span data-hi-label>${s.t}</span></button>`;
     return tile(s);
   }).join('');
@@ -824,6 +845,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
   function renderSearch(){
     const q=sq.value.trim().toLowerCase();
     hits=IDX.filter(x=>!q||(x.t+' '+x.d+' '+x.tag).toLowerCase().includes(q));
+    if(q.length>=3&&/hir|recruit|job|role|resum|résum|why/.test(q)) hits.unshift({id:'about',page:false,t:'Why hire Aditi?',d:'Engineer turned PM: CS degree, 4 years shipping at Deloitte, an AI agent at IBM, founding product at a startup. Open to PM roles in tech & AI.',tag:'for recruiters',c:'plum'});
     if(sel>=hits.length) sel=0;
     sres.innerHTML=hits.length?hits.map((x,i)=>`<li><button type="button" role="option" aria-selected="${i===sel}" data-go="${i}"><span class="dot c-${x.c}"></span><span class="st">${x.t}<small>${x.d}</small></span><span class="sk">${x.tag}</span></button></li>`).join(''):'<li class="none">Nothing yet. Try "coffee" or "AI".</li>';
   }

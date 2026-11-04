@@ -1,0 +1,548 @@
+<!doctype html><html><head><meta charset=utf8><title>Aditi's Notebook</title><meta name="description" content="Aditi Singh: a notebook about product, side projects, coffee and whatever I'm into this season."><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Layout: a colorful collage "cover" of clickable stories; each opens a blog post in a sheet. A plain story list sits under the cover. */
+:root{
+  --paper:#FAF7F2; --ink:#1B1A1F; --muted:#615E68; --line:#E3DED5; --sheet:#FFFFFF;
+  --plum:#5B3F66; --forest:#2F5C45; --mustard:#7A2E3B; --cobalt:#2F4E9E; --rust:#B0562F; --teal:#2B6E70; --tile-ink:#1B1A1F; --on:#FAF6EE;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hand:"Caveat", "Bradley Hand", cursive;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#141317;--ink:#F1EEF5;--muted:#A9A4B3;--line:#2B2930;--sheet:#1C1B21;
+  --plum:#6C4E78;--forest:#3A6B53;--mustard:#8A3746;--cobalt:#3D5DB0;--rust:#B8613B;--teal:#33797B;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#141317;--ink:#F1EEF5;--muted:#A9A4B3;--line:#2B2930;--sheet:#1C1B21;
+  --plum:#6C4E78;--forest:#3A6B53;--mustard:#8A3746;--cobalt:#3D5DB0;--rust:#B8613B;--teal:#33797B;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;padding:0 16px 80px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:10px}
+.wrap{max-width:1120px;margin:0 auto}
+.fill{border-bottom:1.5px dashed currentColor;opacity:.8}
+
+/* masthead */
+.mast{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-block:22px 18px}
+.logo{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em}
+.logo span{font-family:var(--hand);font-weight:700;font-size:24px;color:var(--muted);margin-left:6px}
+.mast nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.mast nav a,.mast nav button{font-size:14px;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;cursor:pointer}
+.mast nav a:hover,.mast nav button:hover{background:var(--ink);color:var(--paper)}
+.issue{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-block:1.5px solid var(--ink);padding:7px 2px;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+
+/* cover */
+.cover-title{padding-block:clamp(26px,5vw,48px) clamp(20px,3vw,30px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 32px}
+.cover-title h1{font-family:var(--display);font-weight:800;font-size:clamp(42px,8vw,104px);line-height:.9;letter-spacing:-.035em}
+.cover-title h1 em{font-style:normal;font-family:var(--hand);font-weight:700;color:var(--muted);font-size:.55em;letter-spacing:0;display:inline-block;transform:rotate(-4deg)}
+.cover-title p{max-width:34ch;color:var(--muted);font-size:15.5px}
+.cover{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:minmax(120px,auto);gap:14px}
+.story{position:relative;border:0;border-radius:22px;padding:20px;text-align:left;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;gap:16px;transition:transform .25s cubic-bezier(.3,1.4,.5,1), box-shadow .25s;min-width:0;overflow:hidden}
+.story:hover,.story:focus-visible{transform:translateY(-4px) rotate(var(--tilt,-1deg));box-shadow:0 14px 0 -4px var(--ink)}
+.story .tag{align-self:flex-start;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:color-mix(in srgb,currentColor 16%,transparent);padding:3px 9px;border-radius:999px}
+.story h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1;font-size:clamp(22px,2.4vw,30px)}
+.story .read{font-size:13.5px;font-weight:500;display:flex;justify-content:space-between;gap:8px;opacity:.8}
+.story .art{position:absolute;pointer-events:none}
+.s-big{grid-column:span 3;grid-row:span 3}
+.s-big h2{font-size:clamp(32px,4.4vw,58px)}
+.s-wide{grid-column:span 3;grid-row:span 1}
+.s-sq{grid-column:span 2;grid-row:span 2}
+.s-sm{grid-column:span 1;grid-row:span 2}
+.s-mid{grid-column:span 2;grid-row:span 1}
+.c-plum{--hue:var(--plum)}.c-forest{--hue:var(--forest)}.c-mustard{--hue:var(--mustard)}.c-cobalt{--hue:var(--cobalt)}.c-rust{--hue:var(--rust)}.c-teal{--hue:var(--teal)}
+.story[class*="c-"],.ph[class*="c-"]{background:color-mix(in srgb,var(--hue) 93%,transparent);color:var(--on)}
+.story[class*="c-"] .tag,.ph[class*="c-"] .tag{background:rgb(255 255 255 / .16);color:var(--on)}
+.story[class*="c-"]:hover,.story[class*="c-"]:focus-visible{background:color-mix(in srgb,var(--hue) 100%,transparent)}
+.rows .dot[class*="c-"]{background:var(--hue)}
+
+.sticker{font-family:var(--hand);font-weight:700;font-size:24px;line-height:1.05;justify-content:center;align-items:center;text-align:center;border-radius:50%;aspect-ratio:1;padding:14px;transform:rotate(-8deg)}
+.sticker:hover,.sticker:focus-visible{transform:rotate(4deg) scale(1.05);box-shadow:none}
+.now{background:var(--ink);color:var(--paper);justify-content:center;gap:14px}
+.now .tag{background:rgb(255 255 255 / .15)}
+.now ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.now li::before{content:"→ ";opacity:.6}
+.hint{font-family:var(--hand);font-size:22px;color:var(--muted);text-align:right;margin-top:10px;transform:rotate(-1.5deg)}
+
+/* list */
+.latest{margin-top:clamp(48px,8vw,88px)}
+.latest h3{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:-.02em;padding-bottom:10px;border-bottom:1.5px solid var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 6px}
+.chips button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:4px 12px;font-size:13.5px;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rows{list-style:none;margin:0;padding:0}
+.rows li button{width:100%;display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border:0;border-bottom:1px solid var(--line);background:none;text-align:left;cursor:pointer}
+.rows li button:hover .rt{text-decoration:underline;text-underline-offset:4px}
+.rows .dot{width:14px;height:14px;border-radius:50%}
+.rows .rt{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.rows .rt small{display:block;font-family:var(--body);font-weight:400;font-size:14px;color:var(--muted);letter-spacing:0}
+.rows .meta{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.rows li[hidden]{display:none}
+
+footer.site{margin-top:64px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--muted);font-size:14px}
+footer.site b{color:var(--ink);font-weight:600;user-select:all}
+
+/* post sheet */
+dialog{border:0;padding:0;width:min(760px,100%);max-height:92vh;border-radius:26px;background:var(--sheet);color:var(--ink);box-shadow:0 30px 80px rgb(0 0 0 / .35)}
+dialog::backdrop{background:rgb(20 18 26 / .55);backdrop-filter:blur(3px)}
+dialog[open]{animation:up .35s cubic-bezier(.2,.9,.3,1)}
+@keyframes up{from{transform:translateY(30px);opacity:0}}
+.ph{padding:clamp(22px,4vw,40px);padding-bottom:28px;position:relative}
+.ph .tag{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:color-mix(in srgb,currentColor 16%,transparent);padding:3px 9px;border-radius:999px}
+.ph h2{font-family:var(--display);font-weight:800;font-size:clamp(32px,5vw,52px);line-height:.98;letter-spacing:-.03em;margin-top:14px;max-width:16ch}
+.ph .dek{margin-top:10px;font-size:17px;max-width:46ch;opacity:.85}
+.x{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:0;background:color-mix(in srgb,currentColor 18%,transparent);cursor:pointer;font-size:20px;line-height:1;color:inherit}
+.pb{padding:clamp(22px,4vw,40px);padding-top:26px;display:flex;flex-direction:column;gap:14px;font-size:17px;line-height:1.7}
+.pb p{max-width:62ch}
+.pb ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;max-width:60ch}
+.pb .side{font-family:var(--hand);font-size:23px;color:var(--muted);line-height:1.2;transform:rotate(-1deg)}
+.pnav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding:16px clamp(22px,4vw,40px) 24px}
+.pnav button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 16px;cursor:pointer;font-size:14.5px}
+.pnav button:hover{background:var(--ink);color:var(--sheet)}
+
+@media (max-width:900px){
+  .cover{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .s-big{grid-column:span 4;grid-row:span 2}
+  .s-wide{grid-column:span 4}
+  .s-sm{grid-column:span 2;grid-row:span 1}
+}
+@media (max-width:560px){
+  .cover{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(110px,auto)}
+  .s-big,.s-wide{grid-column:span 2}
+  .s-sq,.s-mid{grid-column:span 2;grid-row:span 1}
+  .s-sm{grid-column:span 1}
+  .rows .meta{display:none}
+  .rows li button{grid-template-columns:14px minmax(0,1fr)}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+.mast nav a.li{display:inline-flex;align-items:center;gap:7px;font-weight:600}
+.mast nav a.li svg{flex:none;border-radius:3px}
+/* kart graphic */
+.kart-svg{display:block;width:100%;height:auto}
+.story .kart-svg{max-width:240px;align-self:center;margin-block:-4px}
+.flag{font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+
+/* full story pages */
+.back{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:14.5px;border:1px solid var(--line);background:transparent;border-radius:999px;padding:7px 14px;cursor:pointer;text-decoration:none}
+.back:hover{background:var(--ink);color:var(--paper)}
+.art-hero{border-radius:28px;padding:clamp(26px,6vw,64px);margin-top:18px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px;align-items:center}
+.art-hero.has-art{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+.art-hero .tag{display:inline-block;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:rgb(255 255 255 / .16);padding:3px 10px;border-radius:999px}
+.art-hero h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,6.5vw,80px);line-height:.95;letter-spacing:-.035em;margin-top:16px;max-width:14ch}
+.art-hero .dek{font-size:clamp(17px,2vw,20px);margin-top:14px;max-width:44ch;opacity:.88}
+.art-hero .meta{margin-top:22px;font-size:13.5px;opacity:.75;display:flex;gap:14px;flex-wrap:wrap}
+.art-hero .kart-svg{max-width:420px;justify-self:center}
+.art-wrap{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(24px,5vw,64px);margin-top:clamp(32px,6vw,56px);align-items:start}
+.art-body{display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.75;max-width:66ch}
+.art-body h3{font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-.02em;margin-top:18px;line-height:1.15}
+.art-body ul{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
+.art-body .side{font-family:var(--hand);font-size:26px;line-height:1.2;color:var(--muted);transform:rotate(-1deg);padding-block:6px}
+.tl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-block:6px}
+.tl div{border-top:3px solid var(--cobalt);padding-top:8px;font-size:14px;line-height:1.4}
+.tl b{display:block;font-family:var(--display);font-size:17px}
+.tl span{color:var(--muted)}
+@media (max-width:600px){.tl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.flow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center;margin-block:6px}
+.flow div{border:1.5px solid var(--ink);border-radius:16px;padding:14px;font-size:14px;line-height:1.4;height:100%}
+.flow b{display:block;font-family:var(--display);font-size:17px;margin-bottom:4px}
+.flow span{color:var(--muted)}
+.flow i{font-style:normal;font-size:22px;color:var(--rust);text-align:center}
+@media (max-width:600px){.flow{grid-template-columns:minmax(0,1fr)}.flow i{transform:rotate(90deg)}}
+.week{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-block:6px}
+.week div{background:color-mix(in srgb,var(--plum) 12%,transparent);border-radius:14px;padding:12px;font-size:13.5px;line-height:1.35}
+.week b{display:block;font-family:var(--display);font-size:18px;color:color-mix(in srgb,var(--plum) 75%,var(--ink))}
+.week span{color:var(--muted)}
+@media (max-width:600px){.week{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.glance{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);border:1.5px solid var(--ink);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:12px;font-size:14.5px}
+.glance h4{margin:0;font-family:var(--hand);font-size:24px;font-weight:700}
+.glance dl{margin:0;display:flex;flex-direction:column;gap:10px}
+.glance dt{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.glance dd{margin:2px 0 0}
+.more{margin-top:clamp(56px,9vw,96px);border-top:1.5px solid var(--ink);padding-top:16px}
+.more h3{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:-.02em}
+.more-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}
+.more-grid .story{min-height:170px}
+.more-grid .story h2{font-size:24px}
+
+@media (max-width:900px){
+  .art-hero.has-art{grid-template-columns:minmax(0,1fr)}
+  .art-wrap{grid-template-columns:minmax(0,1fr)}
+  .glance{position:static;order:-1}
+  .more-grid{grid-template-columns:minmax(0,1fr)}
+}
+
+/* edit mode (owner only): click text to leave Aditi's notes as comments */
+#editBtn{display:none}
+#editBtn.on{display:inline-flex}
+#editBtn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.pen{display:none;position:absolute;top:12px;right:12px;z-index:2;font-family:var(--body);font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--ink);box-shadow:0 2px 8px rgb(0 0 0 / .18);cursor:pointer}
+body.editing .pen{display:inline-flex}
+body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .dek,.art-body > *,.glance dd,.ph h2,.ph .dek,.pb > *){cursor:text;border-radius:6px;transition:outline-color .15s;outline:1.5px dashed transparent;outline-offset:4px}
+body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .dek,.art-body > *,.glance dd,.ph h2,.ph .dek,.pb > *):hover{outline-color:currentColor}
+.editbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--ink);color:var(--paper);border-radius:16px;padding:12px 14px 12px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;width:min(620px,calc(100% - 32px));box-shadow:0 12px 40px rgb(0 0 0 / .3);font-size:14.5px}
+.editbar span{flex:1 1 260px}
+.notedlg{width:min(480px,calc(100% - 32px));border-radius:20px;padding:20px}
+.notedlg .nlab{font-size:13px;color:var(--muted);margin-bottom:10px}
+.notedlg .nlab span{color:var(--ink);font-style:italic}
+.notedlg textarea{width:100%;font:inherit;font-size:15.5px;padding:12px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);resize:vertical}
+.notedlg textarea:focus{outline:none;border-color:var(--ink)}
+.nrow{display:flex;gap:8px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.nrow span{flex:1 1 160px;font-size:13.5px;color:var(--muted)}
+.nrow button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 14px;cursor:pointer;font-size:14px}
+.nrow button[type=submit]{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:600}
+.nrow button:disabled{opacity:.5;cursor:default}
+.editbar button{border:0;border-radius:999px;padding:7px 14px;background:var(--paper);color:var(--ink);cursor:pointer;font-weight:600}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <a class="logo" href="#" data-home style="text-decoration:none">aditi's notebook<span>est. 2026</span></a>
+    <nav>
+      <a href="#" data-home data-jump="latest">all stories</a>
+      <button type="button" data-open="about">about me</button>
+      <a class="li" href="https://www.linkedin.com/in/aditisingh939/" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M6.9 9.6h2.6V18H6.9zM8.2 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM11.1 9.6h2.5v1.2c.4-.7 1.2-1.4 2.6-1.4 2.7 0 3.2 1.8 3.2 4.1V18h-2.6v-4c0-1 0-2.2-1.4-2.2s-1.6 1-1.6 2.1V18h-2.6z"/></svg>LinkedIn</a>
+      <button type="button" id="editBtn" aria-pressed="false">✎ edit notes</button>
+      <button type="button" id="themeBtn" aria-label="Change theme">◐</button>
+    </nav>
+  </header>
+  <div class="issue"><span>Issue 01</span><span>Fall 2026</span><span>Cambridge, MA</span></div>
+
+  <main id="home">
+    <section class="cover-title">
+      <h1>things I'm building, <em>learning</em> &amp; loving lately</h1>
+      <p>A notebook about product, side projects, coffee and whatever I'm into this season. Click anything on the cover.</p>
+    </section>
+
+    <section class="cover" id="cover" aria-label="Cover stories"></section>
+    <p class="hint">↑ big stories get their own page, small ones pop open</p>
+
+    <section class="latest" id="latest">
+      <h3>All stories</h3>
+      <div class="chips" id="chips" role="group" aria-label="Filter stories"></div>
+      <ul class="rows" id="rows"></ul>
+    </section>
+  </main>
+
+  <article id="article" hidden></article>
+
+  <footer class="site"><span>Say hi: <b>aditi__s@mit.edu</b></span><span>Made in Cambridge with too much coffee</span></footer>
+</div>
+
+<div class="editbar" id="editbar" hidden><span><b>Edit mode.</b> Click any text, or the ✎ on a tile, to leave a note. Tiles still open their stories.</span><button type="button" id="editDone">Done</button></div>
+
+<dialog id="noteDlg" class="notedlg" aria-labelledby="noteLab"><form id="noteForm"><p class="nlab" id="noteLab">Note on <span id="noteOn"></span></p><textarea id="noteText" rows="4" maxlength="2000" placeholder="What should change? Write it in your own words."></textarea><div class="nrow"><span id="noteMsg" aria-live="polite"></span><button type="button" id="noteCancel">Cancel</button><button type="submit" id="noteSend">Send to Claude</button></div></form></dialog>
+
+<dialog id="post" aria-labelledby="pt">
+  <div class="ph" id="ph"><button type="button" class="x" id="close" aria-label="Close story">×</button><span class="tag" id="ptag"></span><h2 id="pt"></h2><p class="dek" id="pdek"></p></div>
+  <div class="pb" id="pbody"></div>
+  <div class="pnav"><button type="button" id="prevS">← previous</button><button type="button" id="nextS">next story →</button></div>
+</dialog>
+
+<script>
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let kid=0;
+  function kartSVG(){
+    const id='trk'+(kid++);
+    return `<svg class="kart-svg" viewBox="0 0 200 120" role="img" aria-label="A kart racing around a track">
+      <path id="${id}" d="M50 15 H150 A45 45 0 0 1 150 105 H50 A45 45 0 0 1 50 15 Z" fill="none" stroke="currentColor" stroke-opacity=".22" stroke-width="14"/>
+      <path d="M50 15 H150 A45 45 0 0 1 150 105 H50 A45 45 0 0 1 50 15 Z" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="5 6"/>
+      <g fill="currentColor"><rect x="96" y="8" width="3.5" height="3.5"/><rect x="99.5" y="11.5" width="3.5" height="3.5"/><rect x="96" y="15" width="3.5" height="3.5"/><rect x="99.5" y="18.5" width="3.5" height="3.5"/></g>
+      <circle r="7" fill="#E5484D" stroke="#FAF6EE" stroke-width="1.5" ${reduce?'cx="70" cy="15"':''}>${reduce?'':`<animateMotion dur="4s" repeatCount="indefinite" rotate="auto"><mpath href="#${id}"/></animateMotion>`}</circle>
+    </svg>`;
+  }
+
+  const S=[
+    {id:'startup',page:true,size:'s-big',c:'plum',tag:'work',time:'7 min',tilt:'-1.2deg',
+     t:'Notes from a pre-seed startup',d:'What I\'m learning as one of the first hires at Wadanova.',
+     glance:[['Where','Wadanova, Palo Alto (remote from Boston)'],['When','Aug 2026 – now'],['Role','Founding product, go-to-market and engineering'],['What it does','Helps companies hire and onboard teams in other countries'],['Stage','Pre-seed']],
+     body:`<p>This fall I joined Wadanova, a pre-seed startup that helps companies hire and onboard teams in other countries. Being this early means every day of the week looks different: Monday might be customer calls, Tuesday writing specs, Wednesday testing a new landing page, and by Friday I'm shipping something I didn't know existed on Monday.</p>
+     <div class="week" aria-label="A typical week">
+       <div><b>Mon</b><span>Customer calls</span></div>
+       <div><b>Tue</b><span>Writing specs</span></div>
+       <div><b>Wed</b><span>Building &amp; design</span></div>
+       <div><b>Thu</b><span>Testing messaging</span></div>
+       <div><b>Fri</b><span>Shipping &amp; looking back</span></div>
+     </div>
+     <h3>Why an Employer of Record?</h3>
+     <p>Say a company in the US finds the perfect engineer in Portugal. To hire her properly, they'd normally need to set up a legal entity there, learn local employment law, figure out taxes and benefits, and get the contract right. That can take months, and most small companies give up.</p>
+     <p>An Employer of Record takes all of that on. It becomes the legal employer in that country and handles the contracts, onboarding and payroll, while the company just works with their new teammate. Wadanova is building that, so any team can hire the best person, wherever they live.</p>
+     <h3>Three hats at once</h3>
+     <p>My title has three parts, and I use all of them most weeks.</p>
+     <ul>
+       <li><b>Product.</b> I turn what we hear from customers into requirements, then help ship complete workflows for international hiring, onboarding and payroll. "Complete" matters: a hiring flow that stops halfway is worse than none.</li>
+       <li><b>Go-to-market.</b> I figure out who we should sell to first. That means splitting potential customers into groups, mapping each group's biggest pain points, and deciding where we can win.</li>
+       <li><b>Engineering.</b> At a company this small, the person who wrote the spec can often help build it too. My CS background means I can get a first version working and talk through tradeoffs with the team.</li>
+     </ul>
+     <h3>Listening to employers</h3>
+     <p>A lot of my time goes into conversations with companies that hire, or want to hire, internationally. The patterns show up fast: worries about compliance, slow onboarding, and the stress of getting payroll right in a country you don't know.</p>
+     <p>The most surprising thing I've heard so far: <span class="fill">add a moment from a customer call</span>.</p>
+     <h3>Testing what we say</h3>
+     <p>Early on, how you describe the product matters almost as much as the product itself. So we treat our messaging like an experiment. We write different versions of how we explain Wadanova, run A/B tests, and let the results tell us what to build and who to talk to next.</p>
+     <p>One result that changed my mind: <span class="fill">which message won, and why it surprised you</span>.</p>
+     <h3>What I've learned so far</h3>
+     <ul>
+       <li><b>Talk to customers before you write anything down.</b> Every good spec I've written started with a call.</li>
+       <li><b>Small experiments beat long debates.</b> A test that runs for a week settles arguments that could last a month.</li>
+       <li><b>Focus is a feature.</b> Picking one customer group to serve really well is harder, and better, than serving everyone a little.</li>
+       <li><b>Payroll is more interesting than it sounds.</b> It's where trust is won or lost. People notice when it's wrong.</li>
+     </ul>
+     <h3>Why I said yes</h3>
+     <p>After four years at a big firm and a summer at IBM, I wanted to see what building from zero feels like, with no playbook and a lot of ownership. Doing it alongside Sloan means I can take something from class on Tuesday and try it with a real customer on Thursday.</p>
+     <p class="side">more soon, still figuring it out!</p>`},
+    {id:'kart',page:true,art:true,size:'s-sq',c:'forest',tag:'side quest',time:'4 min',tilt:'1.5deg',
+     t:'I built a real-life Mario Kart',d:'A robot, a WiiMote and a lot of banana peels.',
+     glance:[['When','Rutgers, <span class="fill">year</span>'],['Built with','Kobuki robot base, WiiMote, BeagleBone Black'],['Status','Retired, undefeated']],
+     body:`<p>In college I wanted to know what Mario Kart would feel like in real life, so I built it. A Kobuki robot base drives around a track you lay out on the floor. You steer it with a WiiMote, and it reacts to "items" placed on the track.</p>
+     <h3>How it worked</h3>
+     <ul><li><b>The kart:</b> a Kobuki, a small robot base normally used for research</li><li><b>The controller:</b> a WiiMote, connected over Bluetooth</li><li><b>The brains:</b> a BeagleBone Black reading the controller and driving the motors</li><li><b>The items:</b> markers on the track that made the kart <span class="fill">speed up, spin out…</span></li></ul>
+     <h3>What went wrong</h3>
+     <p>A lot. It crashed into walls, the Bluetooth dropped at the worst moments, and <span class="fill">add a funny story</span>.</p>
+     <h3>Why I still love it</h3>
+     <p>It was the first time I built something just because I wanted it to exist. That feeling is a big part of why I ended up in product.</p>
+     <p class="side"><span class="fill">add a photo or video here</span></p>`},
+    {id:'now',size:'s-sm',now:true,tag:'right now',tilt:'-1deg',t:'Right now'},
+    {id:'ibm',page:true,size:'s-sq',c:'rust',tag:'work',time:'7 min',tilt:'1.2deg',
+     t:'My summer building an AI agent',d:'A product internship at IBM, and what I learned about making AI useful to real teams.',
+     glance:[['Where','IBM, San Jose'],['When','Summer 2026'],['Team','IBM zAIOps'],['Role','Product management MBA intern'],['Built with','Python, SQL, analytics dashboards'],['Outcome','$100K+ in new sales opportunities']],
+     body:`<p>This summer I was a product management intern at IBM, on the zAIOps team. zAIOps builds AI tools that help companies run their IBM Z systems, the mainframes behind a lot of the world's banking, travel and retail. My project sat on the business side of that product: helping the people who sell and shape it make better decisions, faster.</p>
+     <h3>The problem</h3>
+     <p>The team had plenty of data. Sales pipeline lived in one place, revenue in another, customer details somewhere else. Each system was fine on its own, but answering a simple question meant pulling reports from all three and stitching them together by hand.</p>
+     <p>Questions like "which accounts are most likely to expand?" or "which companies look like our best customers?" could take days to answer. By the time you had an answer, the moment had often passed.</p>
+     <h3>What I built</h3>
+     <p>I built an AI agent in Python that connects those sources and turns them into answers in real time.</p>
+     <div class="flow" aria-label="How the agent works">
+       <div><b>Data in</b><span>Pipeline, revenue and customer data</span></div>
+       <i aria-hidden="true">→</i>
+       <div><b>The agent</b><span>Connects the sources and works out what matters</span></div>
+       <i aria-hidden="true">→</i>
+       <div><b>Answers out</b><span>Live insights and dashboards for sales and product</span></div>
+     </div>
+     <p>Alongside the agent, I set up automated data and reporting workflows in Python and SQL. They do two things on a schedule, with no one having to ask:</p>
+     <ul>
+       <li><b>Find expansion markets.</b> Spot the regions and industries where the product has the most room to grow.</li>
+       <li><b>Build lookalike segments.</b> Look at the best existing B2B customers and find other companies that share their traits, so sales knows who to call next.</li>
+     </ul>
+     <h3>How I approached it as a PM</h3>
+     <p>It would have been easy to start with the tech, because agents are exciting. Instead I started with the people who would use it: what did sales and product teams actually need to know, how often, and what did they do with the answer? <span class="fill">Add the question you heard most often.</span></p>
+     <p>From there I kept the scope narrow. I got one useful answer working end to end, showed it to the team, and built out from what they actually used.</p>
+     <h3>What came out of it</h3>
+     <p>The segments and insights turned into real leads. They contributed to more than $100K in new sales opportunities, and gave the team a faster way to answer questions that used to take days.</p>
+     <h3>What I learned</h3>
+     <ul>
+       <li><b>The model isn't the hard part.</b> Getting messy data into a shape people trust is.</li>
+       <li><b>Show your work.</b> People act on an AI answer when they can see where it came from.</li>
+       <li><b>Usefulness beats a flashy demo.</b> A tool someone opens every Monday is worth more than one that impresses once.</li>
+       <li><b>Python and SQL still matter.</b> Being able to build the first version myself made everything faster.</li>
+     </ul>
+     <h3>What I'm taking forward</h3>
+     <p>I came into the summer curious about AI agents. I left convinced the opportunity is in the unglamorous middle: connecting the data companies already have to the decisions people make every day. That's a big part of what I'm thinking about now, at Sloan and at Wadanova.</p>
+     <p class="side">ask me about agents, I could talk for hours</p>`},
+    {id:'pm',page:true,size:'s-wide',c:'cobalt',tag:'work',time:'8 min',tilt:'1deg',
+     t:'How I went from engineer to PM',d:'Four years at Deloitte, and how I slowly moved from writing the code to deciding what to build.',
+     glance:[['Where','Deloitte, New York'],['When','2021 – 2025'],['Path','Analyst → Consultant → Senior Consultant'],['Team','Solutions engineering'],['Worked on','Cloud, healthcare, public safety, nonprofits']],
+     body:`<p>I studied computer science and economics at Rutgers. I liked both, but I never quite picked one. When I joined Deloitte's solutions engineering team in 2021, I thought I was signing up to be an engineer. Four years later I was mostly doing product work. This is how that happened, one project at a time.</p>
+     <div class="tl" aria-label="Timeline">
+       <div><b>2021</b><span>Analyst: cloud migrations</span></div>
+       <div><b>2022</b><span>Consultant: statewide health records</span></div>
+       <div><b>2024</b><span>Senior Consultant: public-safety radios</span></div>
+       <div><b>2021–25</b><span>On the side: pro bono data work</span></div>
+     </div>
+     <h3>Year one: shipping is mostly coordination</h3>
+     <p>My first projects were moving six products from old servers to AWS. I came in expecting the hard part to be technical. It turned out the hard part was getting engineering, data, security and testing to land the same release on the same night.</p>
+     <p>I ended up running the day-to-day for a 10-person engineering team: writing user stories, tracking dependencies, planning sprints, and managing environment refreshes, patches and production releases. When the migrations were done, infrastructure costs were down about 40% and processing was about 50% faster. The bigger lesson for me was that the person keeping everyone pointed in the same direction matters as much as any one line of code.</p>
+     <h3>Years two and three: falling for discovery</h3>
+     <p>Next I joined a team building a statewide electronic health records platform. Before anyone wrote code, we had to understand how care actually happened, so I spent a lot of time in hospitals: nine of them, watching nurses, doctors and staff move through their day.</p>
+     <p>Every hospital did things a little differently, and every workaround had a reason. My job was to turn all of that into something a team could build from: product requirements, user stories and a prioritized backlog. I also wrote a 30-page recommendations report covering how the new workflows should work, what the screens needed to do, how data would connect between systems, the biggest risks, and a phased plan for piloting it.</p>
+     <p>This is where I realized I liked asking "why does it work this way?" more than "how do I build this?"</p>
+     <h3>Year four: decisions with a lot riding on them</h3>
+     <p>As a senior consultant, I led the technical evaluation for new radios for a nationwide public-safety team. These are the radios people rely on in emergencies, so "good enough" wasn't an option.</p>
+     <p>I worked with the people who would use them to define what they actually needed: operational requirements, security requirements and must-have features. Then I compared vendors and the market against that list. The evaluation led to a $21M purchase of 2,200 radios. Afterward I put together a cost estimate and an investment roadmap for what should come next, which helped secure another $2M in funding.</p>
+     <p>That project taught me how to make a recommendation that people with a lot at stake could trust: be clear about the tradeoffs, show your work, and know your users better than anyone else in the room.</p>
+     <h3>The project I'm proudest of</h3>
+     <p>Alongside client work, I joined Deloitte's pro bono program and led a team of six helping a women's economic empowerment nonprofit. Their donor data was spread across Salesforce and a pile of Google Sheets. We cleaned it up, grouped donors by how they gave, and built Tableau dashboards so the team could see what was working.</p>
+     <p>With that, they ran targeted email and text campaigns in English and Spanish. Donations went up 200%, and the money helped fund two new programs. It's the clearest example I have of data turning directly into something good in the world.</p>
+     <h3>What changed in how I work</h3>
+     <ul>
+       <li><b>From tickets to problems.</b> I stopped starting with "what's the task?" and started with "what's the problem, and for whom?"</li>
+       <li><b>Engineering instincts stayed.</b> Knowing how systems work makes me better at scoping, spotting risk early and earning trust with engineers.</li>
+       <li><b>Writing is half the job.</b> A clear requirements doc or one-page recommendation does more than any meeting.</li>
+       <li><b>Go see it.</b> The best insights came from being in the room: a hospital floor, a radio test, a donor call.</li>
+     </ul>
+     <h3>Why that led to an MBA</h3>
+     <p>By the end, I'd seen how products get built and how they get used. What I wanted to understand better was the business around them: why something gets funded, how it finds customers, and how to build a company around it. That's what brought me to MIT Sloan, and to a pre-seed startup where I get to do all of it at once.</p>
+     <p class="side">engineer at heart, PM by choice</p>`},
+    {id:'langs',size:'s-mid',c:'teal',tag:'life',time:'2 min',tilt:'-2deg',
+     t:'Hola, नमस्ते, Hallo',d:'Five languages, sort of.',
+     body:`<p>I grew up switching between languages, and I never really stopped collecting them. English, Spanish, Hindi and Urdu are the ones I use most. German is a work in progress.</p>
+     <p>Favorite part: the jokes that only work in one language.</p>`},
+    {id:'sticker',size:'s-sm sticker',c:'rust',t:'say hi!',about:true},
+    {id:'coffee',size:'s-mid',c:'mustard',tag:'life',time:'2 min',tilt:'-1.5deg',
+     t:'The Cambridge coffee list',d:'Where to get a good latte around Cambridge and Boston.',
+     body:`<p>Grad school runs on coffee and so do I. My usual order is a latte. Here's the list I'm working through, Cambridge first:</p>
+     <p><b>Cambridge</b></p>
+     <ul><li><b>Broadsheet Coffee</b>: cozy, with excellent espresso drinks</li><li><b>Faro Café</b>, Harvard Square: top-tier coffee and a cozy vibe, if you can get a seat</li><li><b>Tatte</b>: the classic spot to study or meet a classmate</li></ul>
+     <p><b>Boston</b></p>
+     <ul><li><b>George Howell Coffee</b>: a Boston coffee institution</li><li><b>Gracenote</b>, Leather District: a tiny standing-room espresso bar</li><li><b>Little Wolf Coffee</b>, Seaport: a favorite of coffee nerds</li></ul>
+     <p class="side">recommendations welcome!</p>`},
+    {id:'sloan',size:'s-mid',c:'forest',tag:'school',time:'2 min',tilt:'-1deg',
+     t:'Life at Sloan, so far',d:'Clubs, conferences and too many coffee chats.',
+     body:`<p>I'm in the MIT Sloan MBA class of 2027. Outside class I help run the Tech &amp; AI Conference and the Product Management Club, and I'm on the community team.</p>
+     <p>Favorite part so far: <span class="fill">fill in a moment you loved</span>.</p>`},
+    {id:'slopes',size:'s-mid',c:'cobalt',tag:'life',time:'1 min',tilt:'1.5deg',
+     t:'Ski season & a piano piece',d:'What I do when I\'m not at a laptop.',
+     body:`<p>Winter means skiing whenever I can get to a mountain. Last season: <span class="fill">12</span> days, favorite run at <span class="fill">mountain</span>.</p>
+     <p>The rest of the year I'm at the piano, slowly learning <span class="fill">piece name</span>.</p>`},
+  ];
+  const about={c:'mustard',tag:'about',t:'Hi, I\'m Aditi',d:'Product person, MBA student, coffee drinker.',
+    body:`<p>I work on products, usually somewhere between the tech, the business and the people using it. Right now I'm at Wadanova and finishing my MBA at MIT Sloan. Before that I spent four years at Deloitte and studied CS and economics at Rutgers.</p>
+    <p>This notebook is where I write about what I'm building and what I'm into. If something here interests you, I'd love to hear from you.</p>
+    <p><b>aditi__s@mit.edu</b> · <a href="https://www.linkedin.com/in/aditisingh939/">LinkedIn</a></p>`};
+
+  const stories=S.filter(s=>!s.now&&!s.about);
+  const pops=stories.filter(s=>!s.page);
+  const attrs=s=>s.page?`data-page="${s.id}"`:`data-open="${s.id}"`;
+  const tile=(s,extra='')=>`<button type="button" class="story ${extra||s.size} c-${s.c}" style="--tilt:${s.tilt}" ${attrs(s)}><span class="pen" data-pen>✎ note</span><span class="tag">${s.tag}</span>${s.art&&!extra?kartSVG():''}<h2>${s.t}</h2><span class="read"><span>${s.d}</span><span class="flag">${s.page?'full story ↗':s.time+' →'}</span></span></button>`;
+
+  document.getElementById('cover').innerHTML=S.map(s=>{
+    if(s.now) return `<div class="story now ${s.size}" style="cursor:default"><span class="pen" data-pen>✎ note</span><span class="tag">${s.tag}</span><ul><li>Building at Wadanova</li><li>MBA at MIT Sloan</li><li>Learning <span class="fill">a piano piece</span></li><li>Drinking a latte</li></ul></div>`;
+    if(s.about) return `<button type="button" class="story ${s.size} c-${s.c}" data-open="about"><span class="pen" data-pen>✎</span>${s.t}</button>`;
+    return tile(s);
+  }).join('');
+
+  // list + filters
+  const rows=document.getElementById('rows'),chips=document.getElementById('chips');
+  rows.innerHTML=stories.map(s=>`<li data-tag="${s.tag}"><button type="button" ${attrs(s)}><span class="dot c-${s.c}"></span><span class="rt">${s.t}<small>${s.d}</small></span><span class="meta">${s.tag} · ${s.page?'full story':s.time}</span></button></li>`).join('');
+  const tags=['all',...new Set(stories.map(s=>s.tag))];
+  chips.innerHTML=tags.map((t,i)=>`<button type="button" data-f="${t}" aria-pressed="${i===0}">${t}</button>`).join('');
+  chips.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;chips.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));rows.querySelectorAll('li').forEach(li=>li.hidden=!(b.dataset.f==='all'||li.dataset.tag===b.dataset.f))});
+
+  // full story pages (hash routing: #startup, #kart, #pm, #ibm)
+  const home=document.getElementById('home'),art=document.getElementById('article');
+  function renderPage(s){
+    const others=stories.filter(o=>o.id!==s.id&&o.page).concat(pops.slice(0,1)).slice(0,3);
+    art.innerHTML=`<button type="button" class="back" data-home>← back to the cover</button>
+      <header class="art-hero c-${s.c} ${s.art?'has-art':''}">
+        <div><span class="tag">${s.tag}</span><h1>${s.t}</h1><p class="dek">${s.d}</p><div class="meta"><span>by Aditi</span><span>${s.time} read</span><span>Fall 2026</span></div></div>
+        ${s.art?kartSVG():''}
+      </header>
+      <div class="art-wrap">
+        <div class="art-body">${s.body}</div>
+        <aside class="glance"><h4>at a glance</h4><dl>${(s.glance||[]).map(g=>`<div><dt>${g[0]}</dt><dd>${g[1]}</dd></div>`).join('')}</dl></aside>
+      </div>
+      <section class="more"><h3>Keep reading</h3><div class="more-grid">${others.map(o=>tile(o,'s-x')).join('')}</div></section>`;
+  }
+  function route(){
+    const id=(location.hash||'').slice(1), s=stories.find(x=>x.id===id&&x.page);
+    if(dlg.open) dlg.close();
+    if(s){renderPage(s);home.hidden=true;art.hidden=false;window.scrollTo(0,0)}
+    else{art.hidden=true;home.hidden=false;if(id==='latest')document.getElementById('latest').scrollIntoView()}
+  }
+  window.addEventListener('hashchange',route);
+
+  // popup sheet
+  const dlg=document.getElementById('post'),ph=document.getElementById('ph');
+  let cur=-1;
+  function open(id){
+    let s; if(id==='about'){s=about;cur=-1}else{cur=pops.findIndex(x=>x.id===id);s=pops[cur]}
+    if(!s) return;
+    ph.className='ph c-'+s.c;
+    document.getElementById('ptag').textContent=s.tag;
+    document.getElementById('pt').textContent=s.t;
+    document.getElementById('pdek').textContent=s.d;
+    document.getElementById('pbody').innerHTML=s.body;
+    document.getElementById('prevS').hidden=cur<=0;
+    document.getElementById('nextS').textContent=cur===-1?'read a story →':'next quick read →';
+    if(!dlg.open){try{dlg.showModal()}catch(e){dlg.setAttribute('open','')}}
+    dlg.scrollTop=0;
+  }
+  document.addEventListener('click',e=>{
+    const p=e.target.closest('[data-page]'); if(p){location.hash=p.dataset.page;return}
+    const h=e.target.closest('[data-home]'); if(h){e.preventDefault();const j=h.dataset.jump;location.hash=j||'';if(!j)history.replaceState?.(null,'',location.pathname+location.search);route();if(j)setTimeout(()=>document.getElementById(j).scrollIntoView({behavior:'smooth'}),20);else window.scrollTo(0,0);return}
+    const b=e.target.closest('[data-open]'); if(b)open(b.dataset.open);
+  });
+  document.getElementById('close').addEventListener('click',()=>dlg.close());
+  dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+  document.getElementById('nextS').addEventListener('click',()=>open(pops[(cur+1)%pops.length].id));
+  document.getElementById('prevS').addEventListener('click',()=>{if(cur>0)open(pops[cur-1].id)});
+
+  // theme
+  const tb=document.getElementById('themeBtn'),order=['system','light','dark'];
+  let theme='system';try{theme=localStorage.getItem('nb-theme')||'system'}catch(e){}
+  function apply(t){t==='system'?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme',t);tb.title='Theme: '+t}
+  apply(theme);
+  tb.addEventListener('click',()=>{theme=order[(order.indexOf(theme)+1)%3];apply(theme);try{localStorage.setItem('nb-theme',theme)}catch(e){}});
+
+
+  // edit mode: owner/editors leave notes as comments anchored to what they click
+  const EDIT=':is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .dek,.art-body > *,.glance dd,.ph h2,.ph .dek,.pb > *)';
+  let comments=null,editing=false;
+  const eb=document.getElementById('editBtn'),bar=document.getElementById('editbar');
+  function setEdit(on){editing=on;document.body.classList.toggle('editing',on);eb.setAttribute('aria-pressed',on);bar.hidden=!on}
+  eb.addEventListener('click',()=>setEdit(!editing));
+  document.getElementById('editDone').addEventListener('click',()=>setEdit(false));
+  const nd=document.getElementById('noteDlg'),nf=document.getElementById('noteForm'),nt=document.getElementById('noteText'),nm=document.getElementById('noteMsg'),ns=document.getElementById('noteSend');
+  let anchor=null,toClaude=false,curLabel='';
+  function copyFallback(text){
+    const msg='Note on '+curLabel+': '+text;
+    const done=()=>{nm.textContent='Copied. Paste it into the chat with Claude.';ns.disabled=false};
+    try{navigator.clipboard.writeText(msg).then(done,()=>{nt.value=msg;nt.select();nm.textContent='Copy this text and paste it into the chat with Claude.';ns.disabled=false})}catch(e){nt.value=msg;nt.select();nm.textContent='Copy this text and paste it into the chat with Claude.';ns.disabled=false}
+  }
+  async function note(el){
+    anchor=null;
+    if(comments){try{anchor=await comments.anchorFor(el)}catch(e){anchor=null}}
+    const label=(el.querySelector?.('h2')?.innerText||el.innerText||'').trim().replace(/\s+/g,' ');
+    document.getElementById('noteOn').textContent='"'+(label.length>70?label.slice(0,70)+'…':label)+'"';
+    nt.value='';nm.textContent='';ns.disabled=false;
+    try{nd.showModal()}catch(e){nd.setAttribute('open','')}
+    nt.focus();
+    curLabel=document.getElementById('noteOn').textContent;
+    let st='off';if(anchor){try{st=await comments.canSendToClaude()}catch(e){}}
+    toClaude=st==='available';ns.textContent=!anchor?'Copy note':toClaude?'Send to Claude':'Save note';
+  }
+  document.getElementById('noteCancel').addEventListener('click',()=>nd.close());
+  nf.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const text=nt.value.trim(); if(!text) return;
+    ns.disabled=true;
+    if(!anchor){copyFallback(text);return}
+    nm.textContent='Sending…';
+    try{
+      try{ if(toClaude) await comments.sendToClaude({anchor,text}); else await comments.create({anchor,text}); }
+      catch(err){ if(err&&err.code==='claude_unavailable'){await comments.create({anchor,text});toClaude=false} else throw err }
+      nm.textContent=toClaude?'Sent to Claude ✓':'Saved ✓ Tell Claude "update my site" when you\'re done.';
+      setTimeout(()=>nd.close(),toClaude?900:2200);
+    }catch(err){
+      const c=err&&err.code;
+      if(c==='consent_required'){nm.textContent='Not sent. Allow notes from this page, then press Send again.';ns.disabled=false;return}
+      if(c==='rate_limited'){nm.textContent='Too many at once. Wait a moment and send again.';ns.disabled=false;return}
+      anchor=null;ns.textContent='Copy note';copyFallback(text);
+    }
+  });
+  document.addEventListener('click',e=>{
+    if(!editing) return;
+    const pen=e.target.closest('[data-pen]');
+    if(pen){e.preventDefault();e.stopPropagation();note(pen.closest('.story'));return}
+    if(e.target.closest('nav,.back,.editbar,.pnav,.x,a,button')) return;
+    const el=e.target.closest(EDIT);
+    if(el){e.preventDefault();e.stopPropagation();note(el)}
+  },true);
+  (async()=>{
+    if(!window.claude||!claude.use) return;   // public site: no edit button
+    eb.classList.add('on');
+    try{
+      const [c,u]=await Promise.all([claude.use('comments').catch(()=>null),claude.use('user').catch(()=>null)]);
+      if(u){let ok=true;try{ok=(await u.isOwner())||(await u.canEdit())}catch(e){} if(!ok){eb.classList.remove('on');return}}
+      comments=c;
+    }catch(e){}
+  })();
+
+  route();
+})();
+</script>
+
+</body></html>

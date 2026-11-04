@@ -54,17 +54,25 @@ button{font:inherit;color:inherit}
 .s-sm{grid-column:span 1;grid-row:span 2}
 .s-mid{grid-column:span 2;grid-row:span 1}
 .c-plum{--hue:var(--plum)}.c-forest{--hue:var(--forest)}.c-mustard{--hue:var(--mustard)}.c-cobalt{--hue:var(--cobalt)}.c-rust{--hue:var(--rust)}.c-teal{--hue:var(--teal)}
-.story[class*="c-"],.ph[class*="c-"]{background:color-mix(in srgb,var(--hue) 93%,transparent);color:var(--on)}
+.story[class*="c-"],.ph[class*="c-"],.art-hero[class*="c-"]{background:color-mix(in srgb,var(--hue) 93%,transparent);color:var(--on)}
 .story[class*="c-"] .tag,.ph[class*="c-"] .tag{background:rgb(255 255 255 / .16);color:var(--on)}
 .story[class*="c-"]:hover,.story[class*="c-"]:focus-visible{background:color-mix(in srgb,var(--hue) 100%,transparent)}
 .rows .dot[class*="c-"]{background:var(--hue)}
 
 .sticker{font-family:var(--hand);font-weight:700;font-size:24px;line-height:1.05;justify-content:center;align-items:center;text-align:center;border-radius:50%;aspect-ratio:1;padding:14px;transform:rotate(-8deg)}
 .sticker:hover,.sticker:focus-visible{transform:rotate(4deg) scale(1.05);box-shadow:none}
-.now{background:var(--ink);color:var(--paper);justify-content:center;gap:14px}
+.now{background:#1B1A1F;color:#FAF6EE;outline:1.5px solid color-mix(in srgb,#FAF6EE 14%,transparent);outline-offset:-1.5px;justify-content:center;gap:14px}
 .now .tag{background:rgb(255 255 255 / .15)}
 .now ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:15px}
-.now li::before{content:"→ ";opacity:.6}
+.now li::before{content:none}
+.nowhead{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.live{width:9px;height:9px;border-radius:50%;background:#E5484D;box-shadow:0 0 0 0 rgb(229 72 77 / .6);animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{to{box-shadow:0 0 0 9px rgb(229 72 77 / 0)}}
+.now .nowl{gap:0}
+.nowl li{display:flex;flex-direction:column;padding:8px 0 8px 12px;border-left:3px solid color-mix(in srgb,var(--hue) 75%,#FAF6EE);line-height:1.15}
+.nowl li+li{margin-top:2px}
+.nowl em{font-style:normal;font-family:var(--hand);font-size:19px;color:color-mix(in srgb,var(--hue) 45%,#FAF6EE)}
+.nowl b{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.01em}
 .hint{font-family:var(--hand);font-size:22px;color:var(--muted);text-align:right;margin-top:10px;transform:rotate(-1.5deg)}
 
 /* list */
@@ -196,6 +204,45 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
 .nrow button[type=submit]{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:600}
 .nrow button:disabled{opacity:.5;cursor:default}
 .editbar button{border:0;border-radius:999px;padding:7px 14px;background:var(--paper);color:var(--ink);cursor:pointer;font-weight:600}
+/* languages story */
+.lx-intro{font-size:18px}
+.lx{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;position:relative}
+.lx::before{content:"";position:absolute;left:21px;top:20px;bottom:20px;border-left:2px dashed var(--line)}
+.lx li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start;position:relative}
+.lx .n{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:17px;background:var(--hue);color:var(--on);box-shadow:0 0 0 5px var(--sheet)}
+.lx .card{border-radius:18px;padding:16px 18px 18px;background:color-mix(in srgb,var(--hue) 11%,var(--sheet));border:1.5px solid color-mix(in srgb,var(--hue) 35%,transparent);display:flex;flex-direction:column;gap:8px;transform:rotate(var(--r,0deg));transition:transform .25s cubic-bezier(.3,1.4,.5,1)}
+.lx li:hover .card{transform:rotate(0) translateX(4px)}
+.lx .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.lx .hi{font-family:var(--display);font-weight:800;font-size:clamp(30px,5vw,40px);line-height:1;letter-spacing:-.02em;color:color-mix(in srgb,var(--hue) 70%,var(--ink))}
+.lx .when{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--hue);color:var(--on);white-space:nowrap}
+.lx .name{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-weight:600;font-size:15px}
+.lx .pips{display:inline-flex;gap:4px}
+.lx .pips i{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--hue)}
+.lx .pips i.on{background:var(--hue)}
+.lx .lvl{font-family:var(--hand);font-size:20px;color:var(--muted);line-height:1}
+.lx .card p{font-size:16px;line-height:1.6;max-width:none}
+.lx-joke{margin-top:10px;align-self:flex-start;position:relative;background:var(--ink);color:var(--sheet);border-radius:20px 20px 20px 4px;padding:14px 18px;font-size:16.5px;max-width:46ch}
+.lx-joke b{font-family:var(--hand);font-size:24px;font-weight:700;display:block;line-height:1;margin-bottom:4px}
+/* sloan story */
+.venn{position:relative;width:min(100%,420px);aspect-ratio:1.25;margin:8px auto 4px}
+.venn span{position:absolute;width:52%;aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:16% 10%;font-family:var(--display);font-weight:700;font-size:clamp(14px,2.4vw,18px);color:var(--on);background:color-mix(in srgb,var(--hue) 72%,transparent);text-shadow:0 1px 2px rgb(0 0 0 / .25)}
+.venn .v1{left:6%;top:0;align-items:flex-start}
+.venn .v2{right:6%;top:0;align-items:flex-start}
+.venn .v3{left:24%;bottom:0;align-items:flex-end}
+.venn b{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%) rotate(-6deg);font-family:var(--hand);font-size:26px;font-weight:700;background:var(--paper);color:var(--ink);padding:2px 12px;border-radius:999px;box-shadow:0 3px 10px rgb(0 0 0 / .18);white-space:nowrap}
+.roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-block:4px}
+.roles div{border-radius:18px;padding:16px 18px;background:var(--hue);color:var(--on);display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.5;transform:rotate(var(--r,0deg))}
+.roles small{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.roles strong{font-family:var(--display);font-size:20px;line-height:1.1;letter-spacing:-.01em}
+@media (max-width:600px){.roles{grid-template-columns:minmax(0,1fr)}}
+.pull{font-family:var(--display);font-weight:700;font-size:clamp(22px,3vw,28px);line-height:1.25;letter-spacing:-.015em;border-left:5px solid var(--forest);padding:4px 0 4px 18px}
+.moment{border:2px dashed var(--forest);border-radius:20px;padding:20px 22px;font-size:17px;display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:start}
+.moment p{margin-top:8px}
+.moment .mq{font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,28px);line-height:1.15;letter-spacing:-.015em;margin-top:0}
+.globe{width:72px;height:72px;fill:none;stroke:var(--forest);stroke-width:2;transform:rotate(-12deg)}
+@media (max-width:560px){.moment{grid-template-columns:minmax(0,1fr)}.globe{width:52px;height:52px}}
+.moment b{font-family:var(--hand);font-size:26px;display:block;line-height:1;margin-bottom:6px;color:var(--forest)}
+@media (max-width:560px){.lx li{grid-template-columns:34px minmax(0,1fr);gap:10px}.lx .n{width:34px;height:34px;font-size:14px}.lx::before{left:16px}}
 </style>
 
 <div class="wrap">
@@ -209,7 +256,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
       <button type="button" id="themeBtn" aria-label="Change theme">◐</button>
     </nav>
   </header>
-  <div class="issue"><span>Issue 01</span><span>Fall 2026</span><span>Cambridge, MA</span></div>
+  <div class="issue"><span id="issueNo">Issue 01</span><span id="issueSeason">Fall 2026</span><span>Cambridge, MA</span></div>
 
   <main id="home">
     <section class="cover-title">
@@ -377,9 +424,16 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      <p>By the end, I'd seen how products get built and how they get used. What I wanted to understand better was the business around them: why something gets funded, how it finds customers, and how to build a company around it. That's what brought me to MIT Sloan, and to a pre-seed startup where I get to do all of it at once.</p>
      <p class="side">engineer at heart, PM by choice</p>`},
     {id:'langs',size:'s-mid',c:'teal',tag:'life',time:'2 min',tilt:'-2deg',
-     t:'Hola, नमस्ते, Hallo',d:'Five languages, sort of.',
-     body:`<p>I grew up switching between languages, and I never really stopped collecting them. English, Spanish, Hindi and Urdu are the ones I use most. German is a work in progress.</p>
-     <p>Favorite part: the jokes that only work in one language.</p>`},
+     t:'नमस्ते, Hola, Hallo, Olá',d:'Five languages, picked up one chapter at a time.',
+     body:`<p class="lx-intro">Five languages, in the order they found me.</p>
+     <ol class="lx">
+       <li class="c-plum" style="--r:-.6deg"><span class="n" aria-hidden="true">1</span><div class="card"><div class="top"><span class="hi" lang="hi">नमस्ते</span><span class="when">From day one</span></div><div class="name">Hindi <span class="pips" role="img" aria-label="5 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="lvl">native</span></div><p>My first language, and what we spoke at home growing up. Still the one I reach for without thinking.</p></div></li>
+       <li class="c-cobalt" style="--r:.5deg"><span class="n" aria-hidden="true">2</span><div class="card"><div class="top"><span class="hi" lang="en">Hello</span><span class="when">Since starting school</span></div><div class="name">English <span class="pips" role="img" aria-label="5 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="lvl">fluent</span></div><p>I learned it when I started school. Before long I was switching between the two mid-sentence, and I never stopped collecting languages after that.</p></div></li>
+       <li class="c-rust" style="--r:-.4deg"><span class="n" aria-hidden="true">3</span><div class="card"><div class="top"><span class="hi" lang="es">Hola</span><span class="when">High school, all four years</span></div><div class="name">Spanish <span class="pips" role="img" aria-label="4 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="lvl">basically fluent</span></div><p>I studied it from my first year of high school through senior year, and by the end I could hold my own.</p></div></li>
+       <li class="c-forest" style="--r:.6deg"><span class="n" aria-hidden="true">4</span><div class="card"><div class="top"><span class="hi" lang="de">Hallo</span><span class="when">2 years in</span></div><div class="name">German <span class="pips" role="img" aria-label="2 out of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="lvl">getting there</span></div><p>Something my brother and I started learning together. Practicing with him keeps me honest, and a little competitive.</p></div></li>
+       <li class="c-teal" style="--r:-.5deg"><span class="n" aria-hidden="true">5</span><div class="card"><div class="top"><span class="hi" lang="pt">Olá</span><span class="when">Brand new</span></div><div class="name">Portuguese <span class="pips" role="img" aria-label="1 out of 5"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="lvl">just started</span></div><p>I just started because I'm spending three weeks in Brazil for an MIT project, and I'd like to get by in more than "obrigada".</p></div></li>
+     </ol>
+     <div class="lx-joke"><b>favorite part</b>the jokes that only work in one language.</div>`},
     {id:'sticker',size:'s-sm sticker',c:'rust',t:'say hi!',about:true},
     {id:'coffee',size:'s-mid',c:'mustard',tag:'life',time:'2 min',tilt:'-1.5deg',
      t:'The Cambridge coffee list',d:'Where to get a good latte around Cambridge and Boston.',
@@ -389,10 +443,26 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      <p><b>Boston</b></p>
      <ul><li><b>George Howell Coffee</b>: a Boston coffee institution</li><li><b>Gracenote</b>, Leather District: a tiny standing-room espresso bar</li><li><b>Little Wolf Coffee</b>, Seaport: a favorite of coffee nerds</li></ul>
      <p class="side">recommendations welcome!</p>`},
-    {id:'sloan',size:'s-mid',c:'forest',tag:'school',time:'2 min',tilt:'-1deg',
-     t:'Life at Sloan, so far',d:'Clubs, conferences and too many coffee chats.',
-     body:`<p>I'm in the MIT Sloan MBA class of 2027. Outside class I help run the Tech &amp; AI Conference and the Product Management Club, and I'm on the community team.</p>
-     <p>Favorite part so far: <span class="fill">fill in a moment you loved</span>.</p>`},
+    {id:'sloan',page:true,size:'s-mid',c:'forest',tag:'school',time:'4 min',tilt:'-1deg',
+     t:'Life at Sloan, so far',d:'Why I chose MIT, what I\'m studying, and where to find me outside class.',
+     glance:[['Program','MIT Sloan MBA, Class of 2027'],['Studying','Technology, product management and finance'],['Leading','Community Building Chair · VP, Product Management Club · Product, Tech &amp; AI Conference'],['Teaching','TA for Communication and Product Management Lab, Fall 2026']],
+     body:`<p class="pull">I chose MIT because I love tech, and because I'm surrounded by brilliant professors and classmates I can learn from every single day.</p>
+     <p>I'm in the MIT Sloan MBA class of 2027. Coming from four years of building and shipping, I wanted a place where the people around me would keep pushing how I think. MIT has been exactly that.</p>
+     <h3>What I'm studying</h3>
+     <p>I've been taking classes across three areas: technology, product management and finance. The idea is range. I want to bring real depth to whatever I work on, whether the hard part is technical, about the product, or about the numbers.</p>
+     <div class="venn" role="img" aria-label="Three overlapping circles: technology, product and finance, with me in the middle">
+       <span class="v1 c-cobalt">Technology</span><span class="v2 c-rust">Product</span><span class="v3 c-plum">Finance</span><b>me, ideally</b>
+     </div>
+     <h3>Where you'll find me outside class</h3>
+     <div class="roles">
+       <div class="c-forest" style="--r:-.6deg"><small>My cohort</small><strong>Community Building Chair</strong>Helping my cohort become a group of people who actually know and look out for each other.</div>
+       <div class="c-cobalt" style="--r:.5deg"><small>Conference team</small><strong>Product, Tech &amp; AI Conference</strong>Helping put on the conference. One of the most rewarding things I've done here.</div>
+       <div class="c-plum" style="--r:.4deg"><small>VP</small><strong>Product Management Club</strong>I get to meet people from all over the industry and work alongside some really great classmates.</div>
+       <div class="c-rust" style="--r:-.5deg"><small>Teaching assistant · this semester</small><strong>Communication &amp; Product Management Lab</strong>Now I'm on the other side of the classroom, helping classmates sharpen how they pitch and build.</div>
+     </div>
+     <h3>Favorite moment so far</h3>
+     <div class="moment"><svg class="globe" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28"/><ellipse cx="32" cy="32" rx="12" ry="28"/><path d="M4 32h56M9 18h46M9 46h46"/></svg><div><b>the people</b><p class="mq">Meeting so many people from around the world.</p><p>Classmates who grew up on different continents, worked in completely different industries and see the same problem in ten different ways. Some of my best lessons here didn't come from a lecture. They came from long coffee chats (latte in hand, always), late nights planning the Product, Tech &amp; AI Conference, and getting to know my cohort as Community Building Chair. And soon, three weeks in Brazil for an MIT project, practicing my very new Portuguese.</p></div></div>
+     <p class="side">if you're thinking about Sloan, reach out, happy to chat!</p>`},
     {id:'slopes',size:'s-mid',c:'cobalt',tag:'life',time:'1 min',tilt:'1.5deg',
      t:'Ski season & a piano piece',d:'What I do when I\'m not at a laptop.',
      body:`<p>Winter means skiing whenever I can get to a mountain. Last season: <span class="fill">12</span> days, favorite run at <span class="fill">mountain</span>.</p>
@@ -409,7 +479,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
   const tile=(s,extra='')=>`<button type="button" class="story ${extra||s.size} c-${s.c}" style="--tilt:${s.tilt}" ${attrs(s)}><span class="pen" data-pen>✎ note</span><span class="tag">${s.tag}</span>${s.art&&!extra?kartSVG():''}<h2>${s.t}</h2><span class="read"><span>${s.d}</span><span class="flag">${s.page?'full story ↗':s.time+' →'}</span></span></button>`;
 
   document.getElementById('cover').innerHTML=S.map(s=>{
-    if(s.now) return `<div class="story now ${s.size}" style="cursor:default"><span class="pen" data-pen>✎ note</span><span class="tag">${s.tag}</span><ul><li>Building at Wadanova</li><li>MBA at MIT Sloan</li><li>Learning <span class="fill">a piano piece</span></li><li>Drinking a latte</li></ul></div>`;
+    if(s.now) return `<div class="story now ${s.size}" style="cursor:default"><span class="pen" data-pen>✎ note</span><span class="nowhead"><i class="live" aria-hidden="true"></i>right now</span><ul class="nowl"><li class="c-plum"><em>building</em><b>Wadanova</b></li><li class="c-cobalt"><em>studying</em><b>MBA at MIT Sloan</b></li><li class="c-rust"><em>TAing</em><b>Comms &amp; PM Lab</b></li><li class="c-teal"><em>learning</em><b>Portuguese, fast</b></li><li class="c-forest"><em>packing for</em><b>3 weeks in Brazil</b></li><li class="c-mustard"><em>drinking</em><b>a latte, obviously</b></li></ul></div>`;
     if(s.about) return `<button type="button" class="story ${s.size} c-${s.c}" data-open="about"><span class="pen" data-pen>✎</span>${s.t}</button>`;
     return tile(s);
   }).join('');
@@ -469,6 +539,17 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
   dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
   document.getElementById('nextS').addEventListener('click',()=>open(pops[(cur+1)%pops.length].id));
   document.getElementById('prevS').addEventListener('click',()=>{if(cur>0)open(pops[cur-1].id)});
+
+  // issue banner: a new issue each season, counting from Issue 01 = Fall 2026
+  (function(){
+    const d=new Date(),m=d.getMonth(),y=d.getFullYear();
+    let base=m>=2?y:y-1, s=m>=2&&m<=4?0:m>=5&&m<=7?1:m>=8&&m<=10?2:3;
+    const names=['Spring','Summer','Fall','Winter'];
+    const label=names[s]+' '+(s===3?base+1:base);
+    const n=Math.max(1,base*4+s-(2026*4+2)+1);
+    document.getElementById('issueNo').textContent='Issue '+String(n).padStart(2,'0');
+    document.getElementById('issueSeason').textContent=label;
+  })();
 
   // theme
   const tb=document.getElementById('themeBtn'),order=['system','light','dark'];

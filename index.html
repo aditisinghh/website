@@ -223,6 +223,75 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
 .lx .card p{font-size:16px;line-height:1.6;max-width:none}
 .lx-joke{margin-top:10px;align-self:flex-start;position:relative;background:var(--ink);color:var(--sheet);border-radius:20px 20px 20px 4px;padding:14px 18px;font-size:16.5px;max-width:46ch}
 .lx-joke b{font-family:var(--hand);font-size:24px;font-weight:700;display:block;line-height:1;margin-bottom:4px}
+
+/* ===== interactive extras ===== */
+/* search */
+#searchBtn{display:inline-flex;align-items:center;gap:6px}
+#searchBtn kbd{font:inherit;font-size:11.5px;opacity:.65;border:1px solid var(--line);border-radius:6px;padding:0 5px}
+.sdlg{width:min(560px,calc(100% - 32px));border-radius:22px;padding:0;margin-top:12vh}
+.sdlg input{width:100%;border:0;border-bottom:1.5px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:19px;padding:18px 20px;outline:none}
+.sdlg ul{list-style:none;margin:0;padding:8px;max-height:52vh;overflow:auto}
+.sdlg li button{width:100%;display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;border:0;background:transparent;border-radius:12px;padding:10px 12px;cursor:pointer}
+.sdlg li button[aria-selected="true"],.sdlg li button:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.sdlg .dot{width:12px;height:12px;border-radius:50%;background:var(--hue)}
+.sdlg .st{font-family:var(--display);font-weight:600;font-size:16.5px}
+.sdlg .st small{display:block;font-family:var(--body);font-weight:400;font-size:13.5px;color:var(--muted)}
+.sdlg .sk{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.sdlg .none{padding:14px 12px;color:var(--muted)}
+.shint{margin:0;padding:10px 20px 14px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line)}
+/* toast + confetti */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;background:#1B1A1F;color:#FAF6EE;border-radius:999px;padding:10px 18px;font-size:14.5px;box-shadow:0 10px 30px rgb(0 0 0 / .3);animation:up .3s cubic-bezier(.2,.9,.3,1)}
+.confetti{position:fixed;z-index:59;width:9px;height:14px;border-radius:2px;pointer-events:none}
+/* cover tilt */
+@media (hover:hover) and (pointer:fine){#cover .story{will-change:transform}}
+/* languages: tap to hear */
+.lx .hi{border:0;background:none;padding:0;cursor:pointer;text-align:left;display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lx .say{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.04em;padding:3px 9px;border-radius:999px;border:1.5px solid currentColor;opacity:.75}
+.lx .hi:hover .say,.lx .hi.speaking .say{opacity:1;background:var(--hue);color:var(--on);border-color:var(--hue)}
+/* startup week */
+.week button{border:0;text-align:left;cursor:pointer;background:color-mix(in srgb,var(--plum) 12%,transparent);border-radius:14px;padding:12px;font-size:13.5px;line-height:1.35;transition:background .2s,transform .2s}
+.week button b{display:block;font-family:var(--display);font-size:18px;color:color-mix(in srgb,var(--plum) 75%,var(--ink))}
+.week button span{color:var(--muted)}
+.week button:hover{transform:translateY(-2px)}
+.week button[aria-pressed="true"]{background:var(--plum);color:var(--on)}
+.week button[aria-pressed="true"] b,.week button[aria-pressed="true"] span{color:var(--on)}
+.wk-detail{border-left:4px solid var(--plum);padding:6px 0 6px 16px;font-size:16.5px;min-height:3.4em}
+.wk-detail b{font-family:var(--hand);font-size:24px;color:color-mix(in srgb,var(--plum) 75%,var(--ink));display:block;line-height:1}
+.wk-hint{font-family:var(--hand);font-size:20px;color:var(--muted);margin-top:-8px}
+/* coffee map */
+.cmap{position:relative;border-radius:22px;overflow:hidden;background:color-mix(in srgb,var(--mustard) 8%,var(--sheet));border:1.5px solid var(--line)}
+.cmap svg{display:block;width:100%;height:auto}
+.cmap .river{fill:none;stroke:color-mix(in srgb,var(--teal) 55%,var(--sheet));stroke-width:30;stroke-linecap:round}
+.cmap .rl{font-family:var(--hand);font-size:18px;fill:color-mix(in srgb,var(--teal) 80%,var(--ink))}
+.cmap .city{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.12em;fill:var(--muted)}
+.cmap .road{fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:3 6}
+.pin{position:absolute;transform:translate(-50%,-100%);border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
+.pin i{width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--mustard);border:2.5px solid #FAF6EE;box-shadow:0 3px 8px rgb(0 0 0 / .25);transition:transform .2s}
+.pin span{font-size:11.5px;font-weight:600;background:var(--sheet);color:var(--ink);border-radius:999px;padding:1px 7px;white-space:nowrap;box-shadow:0 1px 4px rgb(0 0 0 / .15)}
+.pin:hover i,.pin.on i{transform:rotate(-45deg) scale(1.2);background:var(--rust)}
+.pin.bounce i{animation:bounce .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes bounce{0%{transform:rotate(-45deg) translate(8px,-8px)}100%{transform:rotate(-45deg) scale(1.2)}}
+.cnote{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;border-radius:18px;padding:14px 18px;background:var(--mustard);color:var(--on)}
+.cnote small{display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.cnote strong{font-family:var(--display);font-size:22px;line-height:1.1;display:block}
+.cnote p{font-size:15px;margin-top:2px}
+.cpick{border:0;border-radius:999px;padding:10px 16px;background:#FAF6EE;color:#1B1A1F;font-weight:600;cursor:pointer;white-space:nowrap}
+@media (max-width:560px){.pin span{display:none}.cnote{grid-template-columns:minmax(0,1fr)}}
+/* kart game */
+.kg{border-radius:22px;overflow:hidden;background:#1B1A1F;color:#FAF6EE;position:relative}
+.kg canvas{display:block;width:100%;height:auto;touch-action:none}
+.kg-hud{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 16px;font-size:14px;border-top:1px solid rgb(255 255 255 / .12)}
+.kg-hud b{font-family:var(--display);font-size:18px;font-variant-numeric:tabular-nums}
+.kg-hud span{opacity:.75}
+.kg-msg{position:absolute;left:50%;top:14px;transform:translateX(-50%);font-family:var(--hand);font-size:28px;font-weight:700;text-shadow:0 2px 8px rgb(0 0 0 / .5);pointer-events:none;white-space:nowrap}
+.kg-start{position:absolute;inset:0 0 auto 0;aspect-ratio:600/340;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgb(20 18 26 / .55);text-align:center;padding:16px}
+.kg-start button{border:0;border-radius:999px;padding:12px 22px;font-size:17px;font-weight:700;background:#E5484D;color:#fff;cursor:pointer}
+.kg-start p{font-size:14px;opacity:.85;max-width:36ch}
+.kg-pad{display:none;justify-content:space-between;gap:10px;padding:0 12px 12px}
+.kg-pad div{display:flex;gap:10px}
+.kg-pad button{width:58px;height:52px;border-radius:14px;border:0;background:rgb(255 255 255 / .14);color:#FAF6EE;font-size:20px;touch-action:none;user-select:none;-webkit-user-select:none}
+.kg-pad button:active{background:rgb(255 255 255 / .3)}
+@media (pointer:coarse){.kg-pad{display:flex}}
 /* ask the dashboard */
 .askdash{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:12px;align-items:stretch;margin-top:4px}
 .askdash small{display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-bottom:6px;font-family:var(--body)}
@@ -298,6 +367,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
       <button type="button" data-open="about">about me</button>
       <a class="li" href="https://www.linkedin.com/in/aditisingh939/" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M6.9 9.6h2.6V18H6.9zM8.2 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM11.1 9.6h2.5v1.2c.4-.7 1.2-1.4 2.6-1.4 2.7 0 3.2 1.8 3.2 4.1V18h-2.6v-4c0-1 0-2.2-1.4-2.2s-1.6 1-1.6 2.1V18h-2.6z"/></svg>LinkedIn</a>
       <button type="button" id="editBtn" aria-pressed="false">✎ edit notes</button>
+      <button type="button" id="searchBtn" aria-label="Search stories (Command K)">search <kbd>⌘K</kbd></button>
       <button type="button" id="themeBtn" aria-label="Change theme">◐</button>
     </nav>
   </header>
@@ -328,6 +398,8 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
 
 <dialog id="noteDlg" class="notedlg" aria-labelledby="noteLab"><form id="noteForm"><p class="nlab" id="noteLab">Note on <span id="noteOn"></span></p><textarea id="noteText" rows="4" maxlength="2000" placeholder="What should change? Write it in your own words."></textarea><div class="nrow"><span id="noteMsg" aria-live="polite"></span><button type="button" id="noteCancel">Cancel</button><button type="submit" id="noteSend">Send to Claude</button></div></form></dialog>
 
+<dialog id="searchDlg" class="sdlg" aria-label="Search stories"><input id="sq" type="search" placeholder="Search stories…" autocomplete="off" aria-controls="sres"><ul id="sres" role="listbox"></ul><p class="shint">↑ ↓ to move · enter to open · esc to close</p></dialog>
+
 <dialog id="post" aria-labelledby="pt">
   <div class="ph" id="ph"><button type="button" class="x" id="close" aria-label="Close story">×</button><span class="tag" id="ptag"></span><h2 id="pt"></h2><p class="dek" id="pdek"></p></div>
   <div class="pb" id="pbody"></div>
@@ -353,13 +425,15 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      t:'Notes from a pre-seed startup',d:'What I\'m learning as one of the first hires at Wadanova.',
      glance:[['Where','Wadanova, Palo Alto (remote from Boston)'],['When','Aug 2026 – now'],['Role','Founding product, go-to-market and engineering'],['What it does','Helps companies hire and onboard teams in other countries'],['Stage','Pre-seed']],
      body:`<p>This fall I joined Wadanova, a pre-seed startup that helps companies hire and onboard teams in other countries. Being this early means every day of the week looks different: Monday might be customer calls, Tuesday writing specs, Wednesday testing a new landing page, and by Friday I'm shipping something I didn't know existed on Monday.</p>
-     <div class="week" aria-label="A typical week">
-       <div><b>Mon</b><span>Customer calls</span></div>
-       <div><b>Tue</b><span>Writing specs</span></div>
-       <div><b>Wed</b><span>Building &amp; design</span></div>
-       <div><b>Thu</b><span>Testing messaging</span></div>
-       <div><b>Fri</b><span>Shipping &amp; looking back</span></div>
+     <div class="week" role="group" aria-label="A typical week. Tap a day.">
+       <button type="button" data-day="Back-to-back conversations with companies that hire, or want to hire, abroad. I write down every pain point I hear." aria-pressed="true"><b>Mon</b><span>Customer calls</span></button>
+       <button type="button" data-day="Turning what we heard into requirements for hiring, onboarding and payroll flows, so the team knows exactly what to build." aria-pressed="false"><b>Tue</b><span>Writing specs</span></button>
+       <button type="button" data-day="Prototyping with the team. Some days that means designing a flow, some days writing the first version myself." aria-pressed="false"><b>Wed</b><span>Building &amp; design</span></button>
+       <button type="button" data-day="Running A/B tests on how we describe Wadanova and seeing which version actually lands." aria-pressed="false"><b>Thu</b><span>Testing messaging</span></button>
+       <button type="button" data-day="Getting what\'s ready out the door, then looking at what the week taught us before Monday starts it all again." aria-pressed="false"><b>Fri</b><span>Shipping &amp; looking back</span></button>
      </div>
+     <p class="wk-detail" id="wkDetail" aria-live="polite"><b>Mon</b>Back-to-back conversations with companies that hire, or want to hire, abroad. I write down every pain point I hear.</p>
+     <p class="wk-hint">↑ tap a day</p>
      <h3>Why an Employer of Record?</h3>
      <p>Say a company in the US finds the perfect engineer in Portugal. To hire her properly, they'd normally need to set up a legal entity there, learn local employment law, figure out taxes and benefits, and get the contract right. That can take months, and most small companies give up.</p>
      <p>An Employer of Record takes all of that on. It becomes the legal employer in that country and handles the contracts, onboarding and payroll, while the company just works with their new teammate. Wadanova is building that, so any team can hire the best person, wherever they live.</p>
@@ -388,6 +462,12 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      t:'I built a real-life Mario Kart',d:'A robot, a WiiMote and a lot of banana peels.',
      glance:[['Built with','Kobuki robot base, WiiMote, BeagleBone Black, a color sensor'],['Track','Tape on the floor, one color per item'],['Status','Retired, undefeated']],
      body:`<p>In college I wanted to know what Mario Kart would feel like in real life, so I built it. A Kobuki robot base drives around a track laid out on the floor. You steer it with a WiiMote, and the kart reacts to "items" on the track, just like the game.</p>
+     <h3>Take it for a spin</h3>
+     <div class="kg" id="kg"><canvas width="600" height="340" aria-label="A top-down race track. Drive with the arrow keys or the on-screen buttons."></canvas><div class="kg-msg" aria-live="polite"></div>
+       <div class="kg-start"><button type="button" data-kgo>start race</button><p>Drive with the arrow keys, WASD or the buttons below. Space restarts. Yellow tape is a banana. You've been warned.</p></div>
+       <div class="kg-hud"><span>lap <b data-k="lap">0:00.0</b></span><span>last <b data-k="last">–</b></span><span>best <b data-k="best">–</b></span></div>
+       <div class="kg-pad"><div><button type="button" data-kp="left" aria-label="Steer left">◀</button><button type="button" data-kp="right" aria-label="Steer right">▶</button></div><div><button type="button" data-kp="down" aria-label="Brake">▼</button><button type="button" data-kp="up" aria-label="Gas">▲</button></div></div>
+     </div>
      <h3>How it worked</h3>
      <ul><li><b>The kart:</b> a Kobuki, a small robot base normally used for research</li><li><b>The controller:</b> a WiiMote, connected over Bluetooth</li><li><b>The brains:</b> a BeagleBone Black reading the controller and driving the motors</li><li><b>The eyes:</b> a color sensor pointed at the floor, so the kart could read what it was driving over</li></ul>
      <h3>The items were tape</h3>
@@ -501,23 +581,29 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      <p class="side">engineer at heart, PM by choice</p>`},
     {id:'langs',size:'s-mid',c:'teal',tag:'life',time:'2 min',tilt:'-2deg',
      t:'नमस्ते, Hola, Hallo, Olá',d:'Five languages, picked up one chapter at a time.',
-     body:`<p class="lx-intro">Five languages, in the order they found me.</p>
+     body:`<p class="lx-intro">Five languages, in the order they found me. Tap a greeting to hear it.</p>
      <ol class="lx">
-       <li class="c-plum" style="--r:-.6deg"><span class="n" aria-hidden="true">1</span><div class="card"><div class="top"><span class="hi" lang="hi">नमस्ते</span><span class="when">From day one</span></div><div class="name">Hindi <span class="pips" role="img" aria-label="5 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="lvl">native</span></div><p>My first language, and what we spoke at home growing up. Still the one I reach for without thinking.</p></div></li>
-       <li class="c-cobalt" style="--r:.5deg"><span class="n" aria-hidden="true">2</span><div class="card"><div class="top"><span class="hi" lang="en">Hello</span><span class="when">Since starting school</span></div><div class="name">English <span class="pips" role="img" aria-label="5 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="lvl">fluent</span></div><p>I learned it when I started school. Before long I was switching between the two mid-sentence, and I never stopped collecting languages after that.</p></div></li>
-       <li class="c-rust" style="--r:-.4deg"><span class="n" aria-hidden="true">3</span><div class="card"><div class="top"><span class="hi" lang="es">Hola</span><span class="when">High school, all four years</span></div><div class="name">Spanish <span class="pips" role="img" aria-label="4 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="lvl">basically fluent</span></div><p>I studied it from my first year of high school through senior year, and by the end I could hold my own.</p></div></li>
-       <li class="c-forest" style="--r:.6deg"><span class="n" aria-hidden="true">4</span><div class="card"><div class="top"><span class="hi" lang="de">Hallo</span><span class="when">2 years in</span></div><div class="name">German <span class="pips" role="img" aria-label="2 out of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="lvl">getting there</span></div><p>Something my brother and I started learning together. Practicing with him keeps me honest, and a little competitive.</p></div></li>
-       <li class="c-teal" style="--r:-.5deg"><span class="n" aria-hidden="true">5</span><div class="card"><div class="top"><span class="hi" lang="pt">Olá</span><span class="when">Brand new</span></div><div class="name">Portuguese <span class="pips" role="img" aria-label="1 out of 5"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="lvl">just started</span></div><p>I just started because I'm spending three weeks in Brazil for an MIT project, and I'd like to get by in more than "obrigada".</p></div></li>
+       <li class="c-plum" style="--r:-.6deg"><span class="n" aria-hidden="true">1</span><div class="card"><div class="top"><button type="button" class="hi" data-say="नमस्ते" data-lang="hi-IN" lang="hi">नमस्ते<span class="say" lang="en">▶ hear it</span></button><span class="when">From day one</span></div><div class="name">Hindi <span class="pips" role="img" aria-label="5 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="lvl">native</span></div><p>My first language, and what we spoke at home growing up. Still the one I reach for without thinking.</p></div></li>
+       <li class="c-cobalt" style="--r:.5deg"><span class="n" aria-hidden="true">2</span><div class="card"><div class="top"><button type="button" class="hi" data-say="Hello" data-lang="en-US" lang="en">Hello<span class="say" lang="en">▶ hear it</span></button><span class="when">Since starting school</span></div><div class="name">English <span class="pips" role="img" aria-label="5 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="lvl">fluent</span></div><p>I learned it when I started school. Before long I was switching between the two mid-sentence, and I never stopped collecting languages after that.</p></div></li>
+       <li class="c-rust" style="--r:-.4deg"><span class="n" aria-hidden="true">3</span><div class="card"><div class="top"><button type="button" class="hi" data-say="Hola" data-lang="es-ES" lang="es">Hola<span class="say" lang="en">▶ hear it</span></button><span class="when">High school, all four years</span></div><div class="name">Spanish <span class="pips" role="img" aria-label="4 out of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span class="lvl">basically fluent</span></div><p>I studied it from my first year of high school through senior year, and by the end I could hold my own.</p></div></li>
+       <li class="c-forest" style="--r:.6deg"><span class="n" aria-hidden="true">4</span><div class="card"><div class="top"><button type="button" class="hi" data-say="Hallo" data-lang="de-DE" lang="de">Hallo<span class="say" lang="en">▶ hear it</span></button><span class="when">2 years in</span></div><div class="name">German <span class="pips" role="img" aria-label="2 out of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span class="lvl">getting there</span></div><p>Something my brother and I started learning together. Practicing with him keeps me honest, and a little competitive.</p></div></li>
+       <li class="c-teal" style="--r:-.5deg"><span class="n" aria-hidden="true">5</span><div class="card"><div class="top"><button type="button" class="hi" data-say="Olá" data-lang="pt-BR" lang="pt">Olá<span class="say" lang="en">▶ hear it</span></button><span class="when">Brand new</span></div><div class="name">Portuguese <span class="pips" role="img" aria-label="1 out of 5"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="lvl">just started</span></div><p>I just started because I'm spending three weeks in Brazil for an MIT project, and I'd like to get by in more than "obrigada".</p></div></li>
      </ol>
      <div class="lx-joke"><b>favorite part</b>the jokes that only work in one language.</div>`},
     {id:'sticker',size:'s-sm sticker',c:'rust',t:'say hi!',about:true},
     {id:'coffee',size:'s-mid',c:'mustard',tag:'life',time:'2 min',tilt:'-1.5deg',
-     t:'The Cambridge coffee list',d:'Where to get a good latte around Cambridge and Boston.',
-     body:`<p>Grad school runs on coffee and so do I. My usual order is a latte. Here's the list I'm working through, Cambridge first:</p>
-     <p><b>Cambridge</b></p>
-     <ul><li><b>Broadsheet Coffee</b>: cozy, with excellent espresso drinks</li><li><b>Faro Café</b>, Harvard Square: top-tier coffee and a cozy vibe, if you can get a seat</li><li><b>Tatte</b>: the classic spot to study or meet a classmate</li></ul>
-     <p><b>Boston</b></p>
-     <ul><li><b>George Howell Coffee</b>: a Boston coffee institution</li><li><b>Gracenote</b>, Leather District: a tiny standing-room espresso bar</li><li><b>Little Wolf Coffee</b>, Seaport: a favorite of coffee nerds</li></ul>
+     t:'The Cambridge coffee map',d:'Where to get a good latte around Cambridge and Boston.',
+     body:`<p>Grad school runs on coffee and so do I. My usual order is a latte. Here's the map I'm working through. Tap a pin, or let it choose for you.</p>
+     <div class="cmap" data-cmap>
+       <svg viewBox="0 0 400 300" aria-hidden="true">
+         <path class="road" d="M20 40 C 120 70, 200 60, 380 90"/><path class="road" d="M30 270 C 140 230, 260 260, 390 240"/>
+         <path class="river" d="M-10 175 C 70 130, 150 190, 230 150 S 340 120, 410 170"/>
+         <text class="rl" x="40" y="194" transform="rotate(-6 40 194)">Charles River</text>
+         <text class="city" x="18" y="24">CAMBRIDGE</text><text class="city" x="300" y="290">BOSTON</text>
+       </svg>
+     </div>
+     <div class="cnote" aria-live="polite"><div data-cnote><small>pick a pin</small><strong>Where to?</strong><p>Six spots, three on each side of the river.</p></div><button type="button" class="cpick" data-cpick>pick my coffee for me</button></div>
+     <p class="cap">Not to scale. Very much not to scale.</p>
      <p class="side">recommendations welcome!</p>`},
     {id:'sloan',page:true,size:'s-mid',c:'forest',tag:'school',time:'4 min',tilt:'-1deg',
      t:'Life at Sloan, so far',d:'Why I chose MIT, what I\'m studying, and where to find me outside class.',
@@ -573,7 +659,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
 
   document.getElementById('cover').innerHTML=S.map(s=>{
     if(s.now) return `<div class="story now ${s.size}" style="cursor:default"><span class="pen" data-pen>✎ note</span><span class="nowhead"><i class="live" aria-hidden="true"></i>right now</span><ul class="nowl"><li class="c-plum"><em>building</em><b>Wadanova</b></li><li class="c-cobalt"><em>studying</em><b>MBA at MIT Sloan</b></li><li class="c-rust"><em>TAing</em><b>Comms &amp; PM Lab</b></li><li class="c-teal"><em>learning</em><b>Portuguese, fast</b></li><li class="c-forest"><em>packing for</em><b>3 weeks in Brazil</b></li><li class="c-mustard"><em>drinking</em><b>a latte, obviously</b></li></ul></div>`;
-    if(s.about) return `<button type="button" class="story ${s.size} c-${s.c}" data-open="about"><span class="pen" data-pen>✎</span>${s.t}</button>`;
+    if(s.about) return `<button type="button" class="story ${s.size} c-${s.c}" data-hi aria-label="Say hi: copy my email"><span class="pen" data-pen>✎</span><span data-hi-label>${s.t}</span></button>`;
     return tile(s);
   }).join('');
 
@@ -598,8 +684,11 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
         <aside class="glance"><h4>at a glance</h4><dl>${(s.glance||[]).map(g=>`<div><dt>${g[0]}</dt><dd>${g[1]}</dd></div>`).join('')}</dl></aside>
       </div>
       <section class="more"><h3>Keep reading</h3><div class="more-grid">${others.map(o=>tile(o,'s-x')).join('')}</div></section>`;
+    if(s.id==='kart') kartStop=kartGame(art.querySelector('#kg'));
   }
+  let kartStop=null;
   function route(){
+    if(kartStop){kartStop();kartStop=null}
     const id=(location.hash||'').slice(1), s=stories.find(x=>x.id===id&&x.page);
     if(dlg.open) dlg.close();
     if(s){renderPage(s);home.hidden=true;art.hidden=false;window.scrollTo(0,0)}
@@ -619,6 +708,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
     document.getElementById('pdek').textContent=s.d;
     document.getElementById('pbody').innerHTML=s.body;
     skiInit(document.getElementById('pbody'));
+    coffeeInit(document.getElementById('pbody'));
     document.getElementById('prevS').hidden=cur<=0;
     document.getElementById('nextS').textContent=cur===-1?'read a story →':'next quick read →';
     if(!dlg.open){try{dlg.showModal()}catch(e){dlg.setAttribute('open','')}}
@@ -656,6 +746,169 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
   document.addEventListener('click',e=>{if(e.target.closest('[data-ski]')){try{document.getElementById('skiGo').beginElement()}catch(err){}}});
 
   document.addEventListener('click',e=>{const b=e.target.closest('[data-adsave]');if(b){b.classList.add('saved');b.textContent='saved ✓'}});
+
+  // ===== interactive extras =====
+  const PAL=['#5B3F66','#2F5C45','#7A2E3B','#2F4E9E','#B0562F','#2B6E70','#E5484D'];
+  function toast(msg){document.querySelectorAll('.toast').forEach(t=>t.remove());const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2600)}
+  function confetti(x,y){
+    if(reduce) return;
+    for(let i=0;i<34;i++){
+      const c=document.createElement('i');c.className='confetti';c.style.left=x+'px';c.style.top=y+'px';c.style.background=PAL[i%PAL.length];document.body.appendChild(c);
+      const a=Math.random()*Math.PI*2,d=80+Math.random()*140,dx=Math.cos(a)*d,dy=Math.sin(a)*d-60;
+      c.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:`translate(${dx}px,${dy+160}px) rotate(${Math.random()*720-360}deg)`,opacity:0}],{duration:1100+Math.random()*500,easing:'cubic-bezier(.2,.7,.4,1)'}).onfinish=()=>c.remove();
+    }
+  }
+  // say hi sticker: copy email + confetti
+  document.addEventListener('click',e=>{
+    const h=e.target.closest('[data-hi]'); if(!h||editing) return;
+    const r=h.getBoundingClientRect(),email='aditi__s@mit.edu';
+    confetti(r.left+r.width/2,r.top+r.height/2);
+    const lab=h.querySelector('[data-hi-label]');
+    const done=ok=>{toast(ok?'Copied my email: '+email:'Say hi at '+email);if(lab){lab.textContent=ok?'copied!':'hi!';setTimeout(()=>lab.textContent='say hi!',1800)}};
+    try{navigator.clipboard.writeText(email).then(()=>done(true),()=>done(false))}catch(err){done(false)}
+  });
+  // startup week
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('[data-day]'); if(!b) return;
+    b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    const d=document.getElementById('wkDetail'); if(d) d.innerHTML='<b>'+b.querySelector('b').textContent+'</b>'+b.dataset.day;
+  });
+  // languages: speak the greeting
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('[data-say]'); if(!b) return;
+    if(!('speechSynthesis' in window)){toast("Your browser can't speak, but trust me, it sounds great.");return}
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(b.dataset.say);u.lang=b.dataset.lang;u.rate=.9;
+    const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.replace('_','-').toLowerCase().startsWith(b.dataset.lang.toLowerCase().slice(0,2)));if(v)u.voice=v;
+    b.classList.add('speaking');u.onend=u.onerror=()=>b.classList.remove('speaking');
+    speechSynthesis.speak(u);
+  });
+  // coffee map
+  const CAFES=[
+    {n:'Faro Café',w:'Harvard Square',t:'Top-tier coffee and a cozy vibe, if you can get a seat.',x:16,y:26},
+    {n:'Broadsheet Coffee',w:'Cambridge',t:'Cozy, with excellent espresso drinks.',x:37,y:33},
+    {n:'Tatte',w:'Cambridge',t:'The classic spot to study or meet a classmate.',x:60,y:38},
+    {n:'George Howell Coffee',w:'Downtown Boston',t:'A Boston coffee institution.',x:58,y:72},
+    {n:'Gracenote',w:'Leather District',t:'A tiny standing-room espresso bar.',x:75,y:84},
+    {n:'Little Wolf Coffee',w:'Seaport',t:'A favorite of coffee nerds.',x:89,y:69}];
+  function coffeeInit(root){
+    const m=root.querySelector('[data-cmap]'); if(!m) return;
+    m.insertAdjacentHTML('beforeend',CAFES.map((c,i)=>`<button type="button" class="pin" style="left:${c.x}%;top:${c.y}%" data-cafe="${i}" aria-label="${c.n}, ${c.w}"><i></i><span>${c.n.replace(' Coffee','')}</span></button>`).join(''));
+  }
+  function showCafe(i,picked){
+    const c=CAFES[i],box=document.querySelector('[data-cnote]'); if(!box) return;
+    document.querySelectorAll('.pin').forEach(p=>{p.classList.toggle('on',+p.dataset.cafe===i);p.classList.remove('bounce')});
+    const pin=document.querySelector(`.pin[data-cafe="${i}"]`); if(pin){void pin.offsetWidth;pin.classList.add('bounce')}
+    box.innerHTML=`<small>${picked?'today you\'re going to':c.w}</small><strong>${c.n}</strong><p>${picked?c.w+'. ':''}${c.t}</p>`;
+  }
+  let lastPick=-1;
+  document.addEventListener('click',e=>{
+    const p=e.target.closest('[data-cafe]'); if(p){showCafe(+p.dataset.cafe,false);return}
+    if(e.target.closest('[data-cpick]')){let i;do{i=Math.floor(Math.random()*CAFES.length)}while(i===lastPick);lastPick=i;showCafe(i,true)}
+  });
+  // cover tiles tilt toward the cursor
+  if(!reduce&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+    const cv=document.getElementById('cover');
+    cv.addEventListener('pointermove',e=>{
+      if(editing) return;
+      const t=e.target.closest('.story'); if(!t||t.classList.contains('sticker')||t.classList.contains('now')) return;
+      const r=t.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+      t.style.transition='transform .08s';t.style.transform=`perspective(900px) rotateX(${(-py*7).toFixed(2)}deg) rotateY(${(px*9).toFixed(2)}deg) translateY(-4px)`;
+    });
+    cv.querySelectorAll('.story').forEach(t=>t.addEventListener('pointerleave',()=>{t.style.transition='';t.style.transform=''}));
+  }
+  // search (Cmd/Ctrl+K)
+  const sd=document.getElementById('searchDlg'),sq=document.getElementById('sq'),sres=document.getElementById('sres');
+  const IDX=stories.map(s=>({id:s.id,page:!!s.page,t:s.t,d:s.d,tag:s.tag,c:s.c})).concat([{id:'about',page:false,t:about.t,d:about.d,tag:'about',c:about.c}]);
+  let hits=[],sel=0;
+  function renderSearch(){
+    const q=sq.value.trim().toLowerCase();
+    hits=IDX.filter(x=>!q||(x.t+' '+x.d+' '+x.tag).toLowerCase().includes(q));
+    if(sel>=hits.length) sel=0;
+    sres.innerHTML=hits.length?hits.map((x,i)=>`<li><button type="button" role="option" aria-selected="${i===sel}" data-go="${i}"><span class="dot c-${x.c}"></span><span class="st">${x.t}<small>${x.d}</small></span><span class="sk">${x.tag}</span></button></li>`).join(''):'<li class="none">Nothing yet. Try "coffee" or "AI".</li>';
+  }
+  function openSearch(){sq.value='';sel=0;renderSearch();try{sd.showModal()}catch(e){sd.setAttribute('open','')}sq.focus()}
+  function go(i){const x=hits[i];if(!x) return;sd.close();if(x.page){location.hash=x.id}else{open(x.id)}}
+  document.getElementById('searchBtn').addEventListener('click',openSearch);
+  sq.addEventListener('input',()=>{sel=0;renderSearch()});
+  sq.addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'){e.preventDefault();sel=Math.min(sel+1,hits.length-1);renderSearch()}
+    else if(e.key==='ArrowUp'){e.preventDefault();sel=Math.max(sel-1,0);renderSearch()}
+    else if(e.key==='Enter'){e.preventDefault();go(sel)}
+  });
+  sres.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(+b.dataset.go)});
+  sd.addEventListener('click',e=>{if(e.target===sd)sd.close()});
+  document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();sd.open?sd.close():openSearch()}});
+
+  // real-life Mario Kart, the browser edition
+  function kartGame(root){
+    if(!root) return null;
+    const cv=root.querySelector('canvas'),ctx=cv.getContext('2d'),W=600,H=340,cx=300,cy=170,L=150,R=115,HW=32;
+    const dpr=Math.min(window.devicePixelRatio||1,2);cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    const T=4*L+2*Math.PI*R;
+    function pt(t){let d=((t%1)+1)%1*T;
+      if(d<L) return {x:cx+d,y:cy-R,a:0}; d-=L;
+      if(d<Math.PI*R){const a=-Math.PI/2+d/R;return {x:cx+L+Math.cos(a)*R,y:cy+Math.sin(a)*R,a:a+Math.PI/2}} d-=Math.PI*R;
+      if(d<2*L) return {x:cx+L-d,y:cy+R,a:Math.PI}; d-=2*L;
+      if(d<Math.PI*R){const a=Math.PI/2+d/R;return {x:cx-L+Math.cos(a)*R,y:cy+Math.sin(a)*R,a:a+Math.PI/2}} d-=Math.PI*R;
+      return {x:cx-L+d,y:cy-R,a:0}}
+    function off(x,y){let d;if(Math.abs(x-cx)<=L)d=Math.abs(Math.abs(y-cy)-R);else{const ax=x>cx?cx+L:cx-L;d=Math.abs(Math.hypot(x-ax,y-cy)-R)}return d}
+    const items=[[.12,'b',10],[.27,'g',-12],[.4,'b',-10],[.52,'r',12],[.64,'b',8],[.76,'g',-8],[.88,'b',-12]].map(([t,k,o])=>{const p=pt(t),n=p.a+Math.PI/2;return {x:p.x+Math.cos(n)*o,y:p.y+Math.sin(n)*o,a:p.a,k,cd:0}});
+    const COL={b:'#E8C547',g:'#3A9A5B',r:'#D9483B'};
+    const keys={},hud=k=>root.querySelector(`[data-k="${k}"]`),msgEl=root.querySelector('.kg-msg'),startEl=root.querySelector('.kg-start');
+    let best=null;try{best=+localStorage.getItem('kart-best')||null}catch(e){}
+    const fmt=ms=>{const s=ms/1000;return Math.floor(s/60)+':'+(s%60).toFixed(1).padStart(4,'0')};
+    if(best) hud('best').textContent=fmt(best);
+    let k,running=false,raf=0,prev=0,msgT=0;
+    function reset(){k={x:cx-40,y:cy-R,h:0,v:0,spin:0,stun:0,boost:0,c1:false,c2:false,lapStart:performance.now()};items.forEach(i=>i.cd=0)}
+    reset();
+    function say(t){msgEl.textContent=t;msgT=1.1}
+    function step(dt){
+      if(k.stun>0){k.stun-=dt;k.v=0}
+      else if(k.spin>0){k.spin-=dt;k.h+=13*dt;k.v*=1-2.5*dt}
+      else{
+        if(keys.up)k.v+=430*dt;else if(keys.down)k.v-=520*dt;else k.v*=1-1.6*dt;
+        const st=(keys.left?-1:0)+(keys.right?1:0);k.h+=st*2.7*dt*Math.min(1,Math.abs(k.v)/110)*(k.v<0?-1:1);
+      }
+      const onT=off(k.x,k.y)<HW+4,max=!onT?95:k.boost>0?360:240;k.boost-=dt;
+      if(k.v>max)k.v-=(k.v-max)*6*dt;if(k.v<-90)k.v=-90;
+      const ox=k.x;k.x+=Math.cos(k.h)*k.v*dt;k.y+=Math.sin(k.h)*k.v*dt;
+      k.x=Math.max(10,Math.min(W-10,k.x));k.y=Math.max(10,Math.min(H-10,k.y));
+      for(const i of items){i.cd-=dt;if(i.cd<=0&&Math.hypot(k.x-i.x,k.y-i.y)<17){i.cd=1.4;
+        if(i.k==='b'){k.spin=.75;say('banana!')}else if(i.k==='g'){k.boost=1.1;k.v=Math.max(k.v,300);say('boost!')}else{k.stun=.8;say('shell hit!')}}}
+      if(k.x>cx+L)k.c1=true;if(k.x<cx-L&&k.c1)k.c2=true;
+      if(k.y<cy&&ox<cx&&k.x>=cx&&k.c1&&k.c2){const now=performance.now(),lap=now-k.lapStart;k.lapStart=now;k.c1=k.c2=false;hud('last').textContent=fmt(lap);
+        if(!best||lap<best){best=lap;hud('best').textContent=fmt(lap);say('new best lap!');try{localStorage.setItem('kart-best',String(Math.round(lap)))}catch(e){}}else say('lap!')}
+      if(msgT>0){msgT-=dt;if(msgT<=0)msgEl.textContent=''}
+      hud('lap').textContent=fmt(performance.now()-k.lapStart);
+    }
+    function draw(){
+      ctx.fillStyle='#2F5C45';ctx.fillRect(0,0,W,H);
+      ctx.lineCap='round';ctx.lineJoin='round';
+      const loop=()=>{ctx.beginPath();ctx.moveTo(cx-L,cy-R);ctx.lineTo(cx+L,cy-R);ctx.arc(cx+L,cy,R,-Math.PI/2,Math.PI/2);ctx.lineTo(cx-L,cy+R);ctx.arc(cx-L,cy,R,Math.PI/2,Math.PI*1.5);ctx.closePath()};
+      loop();ctx.strokeStyle='#FAF6EE';ctx.lineWidth=HW*2+6;ctx.stroke();
+      loop();ctx.strokeStyle='#3B3A42';ctx.lineWidth=HW*2;ctx.stroke();
+      loop();ctx.setLineDash([8,10]);ctx.strokeStyle='rgba(250,246,238,.35)';ctx.lineWidth=2;ctx.stroke();ctx.setLineDash([]);
+      for(let r=0;r<8;r++)for(let c=0;c<2;c++){ctx.fillStyle=(r+c)%2?'#FAF6EE':'#1B1A1F';ctx.fillRect(cx-4+c*4,cy-R-HW+r*8,4,8)}
+      for(const i of items){ctx.save();ctx.translate(i.x,i.y);ctx.rotate(i.a+Math.PI/2);ctx.fillStyle=COL[i.k];ctx.globalAlpha=i.cd>0?.45:1;ctx.fillRect(-12,-4,24,8);ctx.restore()}
+      ctx.save();ctx.translate(k.x,k.y);ctx.rotate(k.h);
+      if(k.boost>0){ctx.fillStyle='rgba(58,154,91,.6)';ctx.beginPath();ctx.moveTo(-10,-5);ctx.lineTo(-24,0);ctx.lineTo(-10,5);ctx.fill()}
+      ctx.fillStyle='#E5484D';ctx.strokeStyle='#FAF6EE';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,9,0,Math.PI*2);ctx.fill();ctx.stroke();
+      ctx.fillStyle='#FAF6EE';ctx.fillRect(5,-2,7,4);ctx.restore();
+    }
+    function frame(t){const dt=Math.min(.05,(t-prev)/1000||0);prev=t;if(running)step(dt);draw();raf=requestAnimationFrame(frame)}
+    function start(){reset();running=true;startEl.hidden=true;msgEl.textContent='';say('go!');cv.focus?.()}
+    root.querySelector('[data-kgo]').addEventListener('click',start);
+    const map={ArrowUp:'up',KeyW:'up',ArrowDown:'down',KeyS:'down',ArrowLeft:'left',KeyA:'left',ArrowRight:'right',KeyD:'right'};
+    const kd=e=>{if(!running)return;if(e.code==='Space'){e.preventDefault();start();return}const m=map[e.code];if(m){e.preventDefault();keys[m]=true}};
+    const ku=e=>{const m=map[e.code];if(m)keys[m]=false};
+    addEventListener('keydown',kd);addEventListener('keyup',ku);
+    root.querySelectorAll('[data-kp]').forEach(b=>{const m=b.dataset.kp;
+      b.addEventListener('pointerdown',e=>{e.preventDefault();if(!running)start();keys[m]=true});
+      ['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>keys[m]=false))});
+    raf=requestAnimationFrame(frame);
+    return ()=>{cancelAnimationFrame(raf);removeEventListener('keydown',kd);removeEventListener('keyup',ku)};
+  }
 
   // theme
   const tb=document.getElementById('themeBtn'),order=['system','light','dark'];

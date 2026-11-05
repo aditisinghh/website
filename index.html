@@ -289,11 +289,13 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
 .kg-start{position:absolute;inset:0 0 auto 0;aspect-ratio:600/340;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgb(20 18 26 / .55);text-align:center;padding:16px}
 .kg-start button{border:0;border-radius:999px;padding:12px 22px;font-size:17px;font-weight:700;background:#E5484D;color:#fff;cursor:pointer}
 .kg-start p{font-size:14px;opacity:.85;max-width:36ch}
-.kg-pad{display:none;justify-content:space-between;gap:10px;padding:0 12px 12px}
+.kg-pad{display:none;justify-content:space-between;gap:10px;padding:0 12px 12px;-webkit-touch-callout:none}
 .kg-pad div{display:flex;gap:10px}
 .kg-pad button{width:58px;height:52px;border-radius:14px;border:0;background:rgb(255 255 255 / .14);color:#FAF6EE;font-size:20px;touch-action:none;user-select:none;-webkit-user-select:none}
 .kg-pad button:active{background:rgb(255 255 255 / .3)}
-@media (pointer:coarse){.kg-pad{display:flex}}
+.kg-pad{display:flex}
+.kg-pad button.on{background:rgb(255 255 255 / .34)}
+@media (pointer:fine){.kg-pad button{height:42px;width:50px;font-size:16px}}
 /* editor's note */
 .ednote{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 22px;align-items:start;max-width:860px;margin:0 0 26px;padding:6px 0 6px 18px;border-left:3px solid var(--rust)}
 .en-k{font-family:var(--hand);font-size:24px;color:var(--rust);line-height:1.1;transform:rotate(-3deg);white-space:nowrap}
@@ -498,7 +500,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      body:`<p>In college I wanted to know what Mario Kart would feel like in real life, so I built it. A Kobuki robot base drives around a track laid out on the floor. You steer it with a WiiMote, and the kart reacts to "items" on the track, just like the game.</p>
      <h3>Take it for a spin</h3>
      <div class="kg" id="kg"><canvas width="600" height="340" aria-label="A top-down race track. Drive with the arrow keys or the on-screen buttons."></canvas><div class="kg-msg" aria-live="polite"></div>
-       <div class="kg-start"><button type="button" data-kgo>start race</button><p>Drive with the arrow keys, WASD or the buttons below. Space restarts. Yellow tape is a banana. You've been warned.</p></div>
+       <div class="kg-start"><button type="button" data-kgo>start race</button><p>Hold the arrow keys (or WASD), or press and hold the buttons below. Space restarts. Yellow tape is a banana.</p></div>
        <div class="kg-hud"><span>lap <b data-k="lap">0:00.0</b></span><span>last <b data-k="last">–</b></span><span>best <b data-k="best">–</b></span></div>
        <div class="kg-pad"><div><button type="button" data-kp="left" aria-label="Steer left">◀</button><button type="button" data-kp="right" aria-label="Steer right">▶</button></div><div><button type="button" data-kp="down" aria-label="Brake">▼</button><button type="button" data-kp="up" aria-label="Gas">▲</button></div></div>
      </div>
@@ -615,10 +617,10 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      <p class="side">engineer at heart, PM by choice</p>`},
     {id:'site',page:true,size:'s-wide',c:'plum',tag:'side quest',time:'5 min',tilt:'-1deg',
      t:'How I built this site',d:'A personal website, approached like a product: who it\'s for, what I cut, and how AI helped.',
-     glance:[['Built with','HTML, CSS, JavaScript, and Claude as a pair programmer'],['Hosting','GitHub Pages, deployed from GitHub Desktop'],['Domain','aditisingh.co'],['Design rounds','Four, before this one stuck'],['Cost','The domain. Everything else is free.']],
+     glance:[['Built with','HTML, CSS, JavaScript, and Claude as a pair programmer'],['Hosting','GitHub Pages, deployed from GitHub Desktop'],['Design rounds','Four, before this one stuck']],
      body:`<p>I treated this site the way I'd treat any product: figure out who it's for, decide what it has to do, ship something, then keep cutting until it felt right. This is how that went.</p>
      <h3>Who it's for</h3>
-     <p>Two kinds of readers. Someone deciding whether to talk to me, who has a couple of minutes and wants to know how I work. And anyone who wants to know me a little better. The hard requirement was one link that works for both, without reading like a sales pitch.</p>
+     <p>Two kinds of readers. Someone deciding whether to talk to me, who has a couple of minutes and wants to know how I work. And anyone who wants to know me a little better. The hard requirement was one link that works for both.</p>
      <h3>Four rounds to get here</h3>
      <div class="tl" aria-label="Design rounds">
        <div><b>Round 1</b><span>Bento grid, changelog, editorial layouts</span></div>
@@ -626,27 +628,20 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
        <div><b>Round 3</b><span>Quiet, text-only. Too plain.</span></div>
        <div><b>Round 4</b><span>A notebook. Personal, colorful, still easy to skim.</span></div>
      </div>
-     <h3>What I cut, and why</h3>
-     <ul>
-       <li><b>A stats bar up top.</b> Big numbers looked impressive and read like bragging. The numbers now live inside the stories, where they have context.</li>
-       <li><b>A tongue-in-cheek "classified ad."</b> Clever for about five seconds. It went.</li>
-       <li><b>Copy that tried too hard.</b> The languages story got shorter and plainer, and better for it.</li>
-       <li><b>My phone number.</b> Off the site and off the résumé you can download here.</li>
-     </ul>
      <h3>Small decisions I like</h3>
      <ul>
        <li><b>It keeps itself current.</b> The issue number and season in the banner update on their own, and the Austria countdown on the ski story ticks down daily.</li>
        <li><b>Play beats description.</b> You can drive the Mario Kart, hear the languages and get a coffee pick. It's more fun than a paragraph about being curious.</li>
      </ul>
      <h3>How AI helped</h3>
-     <p>I built this with Claude as my pair programmer. I set the direction, wrote and rewrote the copy, and reviewed every version on my laptop and phone. Claude wrote the code, ran the tests and handled the setup: buying the domain, hosting on GitHub Pages and a one-click way to publish updates. It's the same way I like to work with engineers: be clear about the outcome, give fast and specific feedback, and stay close to the details.</p>
+     <p>I built this with Claude as my pair programmer. I set the direction, wrote and rewrote the copy, and reviewed every version on my laptop and phone. We worked through the code together, from the interactive pieces to the setup: connecting the domain, hosting on GitHub Pages and a simple way to publish updates. It's the same way I like to work with engineers: be clear about the outcome, give fast and specific feedback, and stay close to the details.</p>
      <h3>What I learned</h3>
      <ul>
-       <li><b>The first version is always too loud.</b> Most of the improvement came from removing things.</li>
-       <li><b>Taste is a feature.</b> "This feels like bragging" was the most useful feedback, and it came from me reading it as a stranger would.</li>
-       <li><b>Look at it where people will see it.</b> Several fixes only showed up on a phone or in dark mode.</li>
-     </ul>
-     <p class="side">next up: learning which stories people actually read</p>`},
+       <li><b>Subtract before you add.</b> Almost every version got better by cutting something, not by adding a feature.</li>
+       <li><b>Read it like a stranger would.</b> Going through each page as someone with two minutes and no context was the most useful review I did.</li>
+       <li><b>Working isn't the same as usable.</b> The Mario Kart passed my tests and still felt broken the first time I played it on the live site. The fix was making a quick tap feel responsive, not rewriting the logic.</li>
+       <li><b>Check it where people will see it.</b> Several issues only showed up on a phone or in dark mode.</li>
+     </ul>`},
     {id:'langs',size:'s-mid',c:'teal',tag:'life',time:'2 min',tilt:'-2deg',
      t:'नमस्ते, Hola, Hallo, Olá',d:'Hindi, English, Spanish, German and some new Portuguese.',
      body:`<p class="lx-intro">The languages I speak, in the order I learned them. Tap a greeting to hear it.</p>
@@ -849,15 +844,27 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
     b.parentElement.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
     const d=document.getElementById('wkDetail'); if(d) d.innerHTML='<b>'+b.querySelector('b').textContent+'</b>'+b.dataset.day;
   });
-  // languages: speak the greeting
-  document.addEventListener('click',e=>{
+  // languages: speak the greeting (waits for voices; falls back to a romanized word if the device has no voice for that language)
+  const ROMAN={'hi-IN':'Namaste','pt-BR':'Olá','de-DE':'Hallo','es-ES':'Hola','en-US':'Hello'};
+  function voicesReady(){return new Promise(r=>{const v=speechSynthesis.getVoices();if(v.length)return r(v);const t=setTimeout(()=>r(speechSynthesis.getVoices()),1200);speechSynthesis.addEventListener('voiceschanged',()=>{clearTimeout(t);r(speechSynthesis.getVoices())},{once:true})})}
+  if('speechSynthesis' in window) try{speechSynthesis.getVoices()}catch(e){}
+  document.addEventListener('click',async e=>{
     const b=e.target.closest('[data-say]'); if(!b) return;
-    if(!('speechSynthesis' in window)){toast("Your browser can't speak, but trust me, it sounds great.");return}
+    if(!('speechSynthesis' in window)){toast("Your browser can't play audio for this one.");return}
+    const lang=b.dataset.lang,base=lang.slice(0,2).toLowerCase();
+    const vs=await voicesReady();
+    const norm=v=>(v.lang||'').replace('_','-').toLowerCase();
+    let v=vs.find(x=>norm(x)===lang.toLowerCase())||vs.find(x=>norm(x).startsWith(base));
+    let text=b.dataset.say,ulang=lang;
+    if(!v){ // no voice for this language on this device: say it in Latin letters with an Indian-English or default voice
+      text=ROMAN[lang]||text;
+      v=(base==='hi'&&vs.find(x=>norm(x)==='en-in'))||vs.find(x=>x.default)||vs.find(x=>norm(x).startsWith('en'));
+      ulang=v?v.lang:'en-US';
+    }
     speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(b.dataset.say);u.lang=b.dataset.lang;u.rate=.9;
-    const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.replace('_','-').toLowerCase().startsWith(b.dataset.lang.toLowerCase().slice(0,2)));if(v)u.voice=v;
+    const u=new SpeechSynthesisUtterance(text);u.lang=ulang;u.rate=.85;if(v)u.voice=v;
     b.classList.add('speaking');u.onend=u.onerror=()=>b.classList.remove('speaking');
-    speechSynthesis.speak(u);
+    setTimeout(()=>speechSynthesis.speak(u),60);
   });
   // coffee map
   const CAFES=[
@@ -944,8 +951,8 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
       if(k.stun>0){k.stun-=dt;k.v=0}
       else if(k.spin>0){k.spin-=dt;k.h+=13*dt;k.v*=1-2.5*dt}
       else{
-        if(keys.up)k.v+=430*dt;else if(keys.down)k.v-=520*dt;else k.v*=1-1.6*dt;
-        const st=(keys.left?-1:0)+(keys.right?1:0);k.h+=st*2.7*dt*Math.min(1,Math.abs(k.v)/110)*(k.v<0?-1:1);
+        if(keys.up)k.v+=650*dt;else if(keys.down)k.v-=600*dt;else k.v*=1-1.4*dt;
+        const st=(keys.left?-1:0)+(keys.right?1:0);k.h+=st*dt*(1.6+1.4*Math.min(1,Math.abs(k.v)/110))*(k.v<-5?-1:1);
       }
       const onT=off(k.x,k.y)<HW+4,max=!onT?95:k.boost>0?360:240;k.boost-=dt;
       if(k.v>max)k.v-=(k.v-max)*6*dt;if(k.v<-90)k.v=-90;
@@ -977,12 +984,19 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
     function start(){reset();running=true;startEl.hidden=true;msgEl.textContent='';say('go!');cv.focus?.()}
     root.querySelector('[data-kgo]').addEventListener('click',start);
     const map={ArrowUp:'up',KeyW:'up',ArrowDown:'down',KeyS:'down',ArrowLeft:'left',KeyA:'left',ArrowRight:'right',KeyD:'right'};
-    const kd=e=>{if(!running)return;if(e.code==='Space'){e.preventDefault();start();return}const m=map[e.code];if(m){e.preventDefault();keys[m]=true}};
+    const inView=()=>{const r=root.getBoundingClientRect();return r.bottom>60&&r.top<innerHeight-60};
+    const kd=e=>{const m=map[e.code];if(!running){if(m&&inView()&&!e.metaKey&&!e.ctrlKey&&!e.altKey){e.preventDefault();start()}else return}
+      if(e.code==='Space'){e.preventDefault();start();return}if(m){e.preventDefault();if(m==='up'&&!keys.up&&k.stun<=0&&k.spin<=0)k.v=Math.max(k.v,110);keys[m]=true}};
     const ku=e=>{const m=map[e.code];if(m)keys[m]=false};
     addEventListener('keydown',kd);addEventListener('keyup',ku);
     root.querySelectorAll('[data-kp]').forEach(b=>{const m=b.dataset.kp;
-      b.addEventListener('pointerdown',e=>{e.preventDefault();if(!running)start();keys[m]=true});
-      ['pointerup','pointerleave','pointercancel'].forEach(ev=>b.addEventListener(ev,()=>keys[m]=false))});
+      const on=e=>{e.preventDefault();if(!running)start();if(m==='up'&&!keys.up)k.v=Math.max(k.v,110);keys[m]=true;b.classList.add('on')};
+      const off=()=>{keys[m]=false;b.classList.remove('on')};
+      b.addEventListener('pointerdown',e=>{try{b.setPointerCapture(e.pointerId)}catch(err){}on(e)});
+      b.addEventListener('touchstart',on,{passive:false});
+      ['pointerup','pointercancel','lostpointercapture','touchend','touchcancel'].forEach(ev=>b.addEventListener(ev,off));
+      b.addEventListener('contextmenu',e=>e.preventDefault())});
+    addEventListener('blur',()=>{for(const m in keys)keys[m]=false});
     raf=requestAnimationFrame(frame);
     return ()=>{cancelAnimationFrame(raf);removeEventListener('keydown',kd);removeEventListener('keyup',ku)};
   }

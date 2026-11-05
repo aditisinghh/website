@@ -989,9 +989,9 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
 
 
   // analytics (GoatCounter, privacy-friendly, no cookies). Off until GC is set.
-  const GC='';
+  const GC='aditisingh';
   function track(path,title,event){try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path,title,event:!!event})}catch(e){}}
-  if(GC){
+  if(GC&&/(^|\.)aditisingh\.co$/.test(location.hostname)){
     const forKey=(()=>{try{return (new URLSearchParams(location.search).get('for')||'').toLowerCase()}catch(e){return ''}})();
     window.goatcounter={path:()=>location.pathname+(forKey?'?for='+forKey:'')+(location.hash||'')};
     const gs=document.createElement('script');gs.async=true;gs.src='https://gc.zgo.at/count.js';gs.dataset.goatcounter='https://'+GC+'.goatcounter.com/count';document.head.appendChild(gs);

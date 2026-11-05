@@ -391,7 +391,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
       <a href="#" data-home data-jump="latest">all stories</a>
       <button type="button" data-open="about">about me</button>
       <a class="li" href="https://www.linkedin.com/in/aditisingh939/" aria-label="LinkedIn profile"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M6.9 9.6h2.6V18H6.9zM8.2 5.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM11.1 9.6h2.5v1.2c.4-.7 1.2-1.4 2.6-1.4 2.7 0 3.2 1.8 3.2 4.1V18h-2.6v-4c0-1 0-2.2-1.4-2.2s-1.6 1-1.6 2.1V18h-2.6z"/></svg>LinkedIn</a>
-      <a href="Aditi-Singh-Resume.pdf" target="_blank" rel="noopener">résumé</a>
+      <a href="Aditi-Singh-Resume.pdf" target="_blank" rel="noopener">resume</a>
       <button type="button" id="editBtn" aria-pressed="false">✎ edit notes</button>
       <button type="button" id="searchBtn" aria-label="Search stories (Command K)">search <kbd>⌘K</kbd></button>
       <button type="button" id="themeBtn" aria-label="Change theme">◐</button>
@@ -427,7 +427,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
 
   <article id="article" hidden></article>
 
-  <footer class="site"><span class="fl"><a href="mailto:aditi__s@mit.edu">aditi__s@mit.edu</a><a href="https://www.linkedin.com/in/aditisingh939/">LinkedIn</a><a href="Aditi-Singh-Resume.pdf" target="_blank" rel="noopener">Résumé</a></span><span>Made in Cambridge with too much coffee</span></footer>
+  <footer class="site"><span class="fl"><a href="mailto:aditi__s@mit.edu">aditi__s@mit.edu</a><a href="https://www.linkedin.com/in/aditisingh939/">LinkedIn</a><a href="Aditi-Singh-Resume.pdf" target="_blank" rel="noopener">Resume</a></span><span>Made in Cambridge with too much coffee</span></footer>
 </div>
 
 <div class="editbar" id="editbar" hidden><span><b>Edit mode.</b> Click any text, or the ✎ on a tile, to leave a note. Tiles still open their stories.</span><button type="button" id="editDone">Done</button></div>
@@ -721,7 +721,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
       <li class="c-forest"><b>Ship the fun part first.</b><span>Get something real in people's hands, then build from what they use.</span><button type="button" data-page="kart">see the Mario Kart →</button></li>
     </ol>
     <p>With a CS degree, four years at Deloitte, an AI agent at IBM and a founding role at a startup, I'm happiest where the technical, the business and the people questions meet.</p>
-    <div class="hw-cta">If you're building something with AI and want to compare notes, I'd love to hear from you.<span><b>aditi__s@mit.edu</b> · <a href="https://www.linkedin.com/in/aditisingh939/">LinkedIn</a> · <a href="Aditi-Singh-Resume.pdf" target="_blank" rel="noopener">résumé (PDF)</a></span></div>`};
+    <div class="hw-cta">If you're building something with AI and want to compare notes, I'd love to hear from you.<span><b>aditi__s@mit.edu</b> · <a href="https://www.linkedin.com/in/aditisingh939/">LinkedIn</a> · <a href="Aditi-Singh-Resume.pdf" target="_blank" rel="noopener">resume (PDF)</a></span></div>`};
 
   const stories=S.filter(s=>!s.now&&!s.about);
   const pops=stories.filter(s=>!s.page);
@@ -907,7 +907,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
   function renderSearch(){
     const q=sq.value.trim().toLowerCase();
     hits=IDX.filter(x=>!q||(x.t+' '+x.d+' '+x.tag).toLowerCase().includes(q));
-    if(q.length>=3&&/hir|recruit|job|role|resum|résum|why/.test(q)) hits.unshift({id:'about',page:false,t:'Why hire Aditi?',d:'Engineer turned PM: CS degree, 4 years shipping at Deloitte, an AI agent at IBM, founding product at a startup. Open to AI strategy & product roles.',tag:'for recruiters',c:'plum'});
+    if(q.length>=3&&/hir|recruit|job|role|resum|why/.test(q)) hits.unshift({id:'about',page:false,t:'Why hire Aditi?',d:'Engineer turned PM: CS degree, 4 years shipping at Deloitte, an AI agent at IBM, founding product at a startup. Open to AI strategy & product roles.',tag:'for recruiters',c:'plum'});
     if(sel>=hits.length) sel=0;
     sres.innerHTML=hits.length?hits.map((x,i)=>`<li><button type="button" role="option" aria-selected="${i===sel}" data-go="${i}"><span class="dot c-${x.c}"></span><span class="st">${x.t}<small>${x.d}</small></span><span class="sk">${x.tag}</span></button></li>`).join(''):'<li class="none">Nothing yet. Try "coffee" or "AI".</li>';
   }

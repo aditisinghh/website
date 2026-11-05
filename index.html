@@ -300,10 +300,8 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
 .en-body{display:flex;flex-direction:column;gap:8px}
 .en-body>p:first-child{font-size:17px;line-height:1.65;max-width:62ch}
 .en-start{font-size:14px;color:var(--muted)}
-.en-start button,.en-ps button{border:0;background:none;padding:0;font:inherit;color:var(--ink);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--rust) 60%,transparent);text-underline-offset:3px;cursor:pointer}
-.en-start button:hover,.en-ps button:hover{text-decoration-color:var(--rust)}
-.en-ps{font-size:15.5px;line-height:1.6;max-width:62ch;padding-top:6px;border-top:1px dashed var(--line)}
-.en-ps b{font-family:var(--hand);font-size:21px;font-weight:700;color:var(--rust);margin-right:4px}
+.en-start button{border:0;background:none;padding:0;font:inherit;color:var(--ink);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--rust) 60%,transparent);text-underline-offset:3px;cursor:pointer}
+.en-start button:hover{text-decoration-color:var(--rust)}
 .en-sig{grid-column:2;font-family:var(--hand);font-size:24px;color:var(--muted);line-height:1}
 @media (max-width:600px){.ednote{grid-template-columns:minmax(0,1fr)}.en-sig{grid-column:1}}
 /* how I work + hiring */
@@ -410,7 +408,6 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
       <div class="en-body">
         <p>Most of my work comes back to one habit: sitting with the people doing the job until the real problem shows up. It's taken me from hospital floors to public-safety radios, an AI agent at IBM and a startup's very first customers.</p>
         <p class="en-start">start here: <button type="button" data-page="pm">engineer to PM</button> · <button type="button" data-page="ibm">the IBM agent</button> · <button type="button" data-page="startup">a pre-seed startup</button></p>
-        <p class="en-ps" id="fit" hidden></p>
       </div>
       <span class="en-sig">— Aditi</span>
     </section>
@@ -638,7 +635,6 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      </ul>
      <h3>Small decisions I like</h3>
      <ul>
-       <li><b>One link, personalized.</b> Most applications only take one website. Adding <code>?for=company</code> to the link adds a short note for that team at the top. Everyone else sees the regular site.</li>
        <li><b>It keeps itself current.</b> The issue number and season in the banner update on their own, and the Austria countdown on the ski story ticks down daily.</li>
        <li><b>Play beats description.</b> You can drive the Mario Kart, hear the languages and get a coffee pick. It's more fun than a paragraph about being curious.</li>
      </ul>
@@ -991,16 +987,6 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
     return ()=>{cancelAnimationFrame(raf);removeEventListener('keydown',kd);removeEventListener('keyup',ku)};
   }
 
-  // tailored note: aditisingh.co/?for=<company>
-  const FIT={
-    distyl:{co:'Distyl',note:'The AI Strategist role reads a lot like what I\'ve been practicing: getting close to the customer\'s workflow, making sense of messy data, and staying with it until people actually use what we built. The <button type="button" data-page="pm">hospital and radio work</button> and <button type="button" data-page="ibm">my summer at IBM</button> are the best places to start.'}
-  };
-  (function(){
-    let k=null;try{k=(new URLSearchParams(location.search).get('for')||'').toLowerCase()}catch(e){}
-    const f=FIT[k],el=document.getElementById('fit'); if(!f||!el) return;
-    el.innerHTML=`<b>P.S. ${f.co} team,</b>${f.note}`;
-    el.hidden=false;
-  })();
 
   // analytics (GoatCounter, privacy-friendly, no cookies). Off until GC is set.
   const GC='';

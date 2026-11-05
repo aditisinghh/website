@@ -499,10 +499,10 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      glance:[['Built with','Kobuki robot base, WiiMote, BeagleBone Black, a color sensor'],['Track','Tape on the floor, one color per item'],['Status','Retired, undefeated']],
      body:`<p>In college I wanted to know what Mario Kart would feel like in real life, so I built it. A Kobuki robot base drives around a track laid out on the floor. You steer it with a WiiMote, and the kart reacts to "items" on the track, just like the game.</p>
      <h3>Take it for a spin</h3>
-     <div class="kg" id="kg"><canvas width="600" height="340" aria-label="A top-down race track. Drive with the arrow keys or the on-screen buttons."></canvas><div class="kg-msg" aria-live="polite"></div>
-       <div class="kg-start"><button type="button" data-kgo>start race</button><p>Hold the arrow keys (or WASD), or press and hold the buttons below. Space restarts. Yellow tape is a banana.</p></div>
+     <div class="kg" id="kg"><canvas width="600" height="340" tabindex="0" aria-label="A top-down race track. Drive with the arrow keys or the on-screen buttons."></canvas><div class="kg-msg" aria-live="polite"></div>
+       <div class="kg-start"><button type="button" data-kgo>start race</button><p>Each arrow key (or WASD, or the buttons below) moves the kart that way. Head right from the start line and loop around. Yellow tape is a banana.</p></div>
        <div class="kg-hud"><span>lap <b data-k="lap">0:00.0</b></span><span>last <b data-k="last">–</b></span><span>best <b data-k="best">–</b></span></div>
-       <div class="kg-pad"><div><button type="button" data-kp="left" aria-label="Steer left">◀</button><button type="button" data-kp="right" aria-label="Steer right">▶</button></div><div><button type="button" data-kp="down" aria-label="Brake">▼</button><button type="button" data-kp="up" aria-label="Gas">▲</button></div></div>
+       <div class="kg-pad"><div><button type="button" data-kp="left" aria-label="Move left">◀</button><button type="button" data-kp="right" aria-label="Move right">▶</button></div><div><button type="button" data-kp="down" aria-label="Move down">▼</button><button type="button" data-kp="up" aria-label="Move up">▲</button></div></div>
      </div>
      <h3>How it worked</h3>
      <ul><li><b>The kart:</b> a Kobuki, a small robot base normally used for research</li><li><b>The controller:</b> a WiiMote, connected over Bluetooth</li><li><b>The brains:</b> a BeagleBone Black reading the controller and driving the motors</li><li><b>The eyes:</b> a color sensor pointed at the floor, so the kart could read what it was driving over</li></ul>
@@ -685,7 +685,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
        <div class="c-rust" style="--r:-.5deg"><small>Teaching assistant · this semester</small><strong>Communication &amp; Product Management Lab</strong>Now I'm on the other side of the classroom, helping classmates sharpen how they pitch and build.</div>
      </div>
      <h3>Favorite moment so far</h3>
-     <div class="moment"><svg class="globe" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28"/><ellipse cx="32" cy="32" rx="12" ry="28"/><path d="M4 32h56M9 18h46M9 46h46"/></svg><div><b>the people</b><p class="mq">Meeting so many people from around the world.</p><p>Classmates who grew up on different continents, worked in completely different industries and see the same problem in ten different ways. Some of my best lessons here didn't come from a lecture. They came from long coffee chats (latte in hand, always), late nights planning the Product, Tech &amp; AI Conference, and getting to know my cohort as Community Building Chair. And soon, three weeks in Brazil for an MIT project, practicing my very new Portuguese.</p></div></div>
+     <div class="moment"><svg class="globe" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28"/><ellipse cx="32" cy="32" rx="12" ry="28"/><path d="M4 32h56M9 18h46M9 46h46"/></svg><div><b>the people</b><p class="mq">Meeting so many people from around the world.</p><p>Classmates who grew up on different continents, worked in completely different industries and see the same problem in ten different ways. Some of my best lessons here didn't come from a lecture. They came from long coffee chats (latte in hand, always), late nights planning the Product, Tech &amp; AI Conference, and getting to know my cohort as Community Building Chair. And soon, three weeks in Brazil for an MIT project.</p></div></div>
      <p class="side">if you're thinking about Sloan, reach out, happy to chat!</p>`},
     {id:'slopes',size:'s-mid',c:'cobalt',tag:'life',time:'1 min',tilt:'1.5deg',
      t:'Ski season',d:'12 days on snow last winter. Austria is next.',
@@ -944,22 +944,24 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
     const fmt=ms=>{const s=ms/1000;return Math.floor(s/60)+':'+(s%60).toFixed(1).padStart(4,'0')};
     if(best) hud('best').textContent=fmt(best);
     let k,running=false,raf=0,prev=0,msgT=0;
-    function reset(){k={x:cx-40,y:cy-R,h:0,v:0,spin:0,stun:0,boost:0,c1:false,c2:false,lapStart:performance.now()};items.forEach(i=>i.cd=0)}
+    function reset(){k={x:cx-40,y:cy-R,h:0,v:0,vx:0,vy:0,spin:0,stun:0,boost:0,c1:false,c2:false,lapStart:performance.now()};items.forEach(i=>i.cd=0)}
     reset();
     function say(t){msgEl.textContent=t;msgT=1.1}
     function step(dt){
-      if(k.stun>0){k.stun-=dt;k.v=0}
-      else if(k.spin>0){k.spin-=dt;k.h+=13*dt;k.v*=1-2.5*dt}
-      else{
-        if(keys.up)k.v+=650*dt;else if(keys.down)k.v-=600*dt;else k.v*=1-1.4*dt;
-        const st=(keys.left?-1:0)+(keys.right?1:0);k.h+=st*dt*(1.6+1.4*Math.min(1,Math.abs(k.v)/110))*(k.v<-5?-1:1);
-      }
+      // arcade controls: each arrow moves the kart in that direction on screen
+      let dx=(keys.right?1:0)-(keys.left?1:0),dy=(keys.down?1:0)-(keys.up?1:0);const dl=Math.hypot(dx,dy);if(dl){dx/=dl;dy/=dl}
+      if(k.stun>0){k.stun-=dt;k.vx=k.vy=0}
+      else if(k.spin>0){k.spin-=dt;k.h+=13*dt;k.vx*=1-3*dt;k.vy*=1-3*dt}
+      else if(dl){k.vx+=dx*900*dt;k.vy+=dy*900*dt}
+      else{k.vx*=1-2.2*dt;k.vy*=1-2.2*dt}
       const onT=off(k.x,k.y)<HW+4,max=!onT?95:k.boost>0?360:240;k.boost-=dt;
-      if(k.v>max)k.v-=(k.v-max)*6*dt;if(k.v<-90)k.v=-90;
-      const ox=k.x;k.x+=Math.cos(k.h)*k.v*dt;k.y+=Math.sin(k.h)*k.v*dt;
+      if(dl&&k.stun<=0){const along=k.vx*dx+k.vy*dy;k.vx-= (k.vx-dx*along)*4*dt;k.vy-=(k.vy-dy*along)*4*dt}
+      let sp=Math.hypot(k.vx,k.vy);if(sp>max){const f=Math.max(max,sp-(sp-max)*6*dt)/sp;k.vx*=f;k.vy*=f;sp*=f}
+      k.v=sp;if(sp>8&&k.spin<=0)k.h=Math.atan2(k.vy,k.vx);
+      const ox=k.x;k.x+=k.vx*dt;k.y+=k.vy*dt;
       k.x=Math.max(10,Math.min(W-10,k.x));k.y=Math.max(10,Math.min(H-10,k.y));
       for(const i of items){i.cd-=dt;if(i.cd<=0&&Math.hypot(k.x-i.x,k.y-i.y)<17){i.cd=1.4;
-        if(i.k==='b'){k.spin=.75;say('banana!')}else if(i.k==='g'){k.boost=1.1;k.v=Math.max(k.v,300);say('boost!')}else{k.stun=.8;say('shell hit!')}}}
+        if(i.k==='b'){k.spin=.75;say('banana!')}else if(i.k==='g'){k.boost=1.1;const sp=Math.hypot(k.vx,k.vy)||1;const f=Math.max(sp,300)/sp;k.vx=(k.vx||300)*f;k.vy*=f;say('boost!')}else{k.stun=.8;say('shell hit!')}}}
       if(k.x>cx+L)k.c1=true;if(k.x<cx-L&&k.c1)k.c2=true;
       if(k.y<cy&&ox<cx&&k.x>=cx&&k.c1&&k.c2){const now=performance.now(),lap=now-k.lapStart;k.lapStart=now;k.c1=k.c2=false;hud('last').textContent=fmt(lap);
         if(!best||lap<best){best=lap;hud('best').textContent=fmt(lap);say('new best lap!');try{localStorage.setItem('kart-best',String(Math.round(lap)))}catch(e){}}else say('lap!')}
@@ -981,16 +983,16 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
       ctx.fillStyle='#FAF6EE';ctx.fillRect(5,-2,7,4);ctx.restore();
     }
     function frame(t){const dt=Math.min(.05,(t-prev)/1000||0);prev=t;if(running)step(dt);draw();raf=requestAnimationFrame(frame)}
-    function start(){reset();running=true;startEl.hidden=true;msgEl.textContent='';say('go!');cv.focus?.()}
+    function start(){reset();running=true;startEl.hidden=true;msgEl.textContent='';say('go! head right →');try{window.focus();cv.focus({preventScroll:true})}catch(e){}}
     root.querySelector('[data-kgo]').addEventListener('click',start);
     const map={ArrowUp:'up',KeyW:'up',ArrowDown:'down',KeyS:'down',ArrowLeft:'left',KeyA:'left',ArrowRight:'right',KeyD:'right'};
     const inView=()=>{const r=root.getBoundingClientRect();return r.bottom>60&&r.top<innerHeight-60};
     const kd=e=>{const m=map[e.code];if(!running){if(m&&inView()&&!e.metaKey&&!e.ctrlKey&&!e.altKey){e.preventDefault();start()}else return}
-      if(e.code==='Space'){e.preventDefault();start();return}if(m){e.preventDefault();if(m==='up'&&!keys.up&&k.stun<=0&&k.spin<=0)k.v=Math.max(k.v,110);keys[m]=true}};
+      if(e.code==='Space'){e.preventDefault();start();return}if(m){e.preventDefault();keys[m]=true}};
     const ku=e=>{const m=map[e.code];if(m)keys[m]=false};
     addEventListener('keydown',kd);addEventListener('keyup',ku);
     root.querySelectorAll('[data-kp]').forEach(b=>{const m=b.dataset.kp;
-      const on=e=>{e.preventDefault();if(!running)start();if(m==='up'&&!keys.up)k.v=Math.max(k.v,110);keys[m]=true;b.classList.add('on')};
+      const on=e=>{e.preventDefault();if(!running)start();keys[m]=true;b.classList.add('on')};
       const off=()=>{keys[m]=false;b.classList.remove('on')};
       b.addEventListener('pointerdown',e=>{try{b.setPointerCapture(e.pointerId)}catch(err){}on(e)});
       b.addEventListener('touchstart',on,{passive:false});

@@ -48,8 +48,8 @@ button{font:inherit;color:inherit}
 .story h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1;font-size:clamp(22px,2.4vw,30px)}
 .story .read{font-size:13.5px;font-weight:500;display:flex;justify-content:space-between;gap:8px;opacity:.8}
 .story .art{position:absolute;pointer-events:none}
-.s-big{grid-column:span 3;grid-row:span 3}
-.s-big h2{font-size:clamp(32px,4.4vw,58px)}
+.s-big{grid-column:span 3;grid-row:span 1;min-height:260px}
+.s-big h2{font-size:clamp(28px,3.4vw,44px)}
 .s-wide{grid-column:span 3;grid-row:span 1}
 .s-sq{grid-column:span 2;grid-row:span 2}
 .s-sm{grid-column:span 1;grid-row:span 2}
@@ -528,7 +528,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      <p>And the best moment wasn't when it worked. It was when friends started lining up for a turn, laughing every time someone spun out, and asking for new items. Watching people play with something I made is still my favorite feeling, and a big part of why I ended up in product.</p>
      <p class="side">still undefeated. rematches welcome.</p>`},
     {id:'now',size:'s-sm',now:true,tag:'right now',tilt:'-1deg',t:'Right now'},
-    {id:'ibm',page:true,size:'s-sq',c:'rust',tag:'work',time:'7 min',tilt:'1.2deg',
+    {id:'ibm',page:true,size:'s-wide',c:'rust',tag:'work',time:'7 min',tilt:'1.2deg',
      t:'My summer building an AI agent',d:'A product internship at IBM, and what I learned about making AI useful to real teams.',
      glance:[['Where','IBM, San Jose'],['When','Summer 2026'],['Team','IBM zAIOps'],['Role','Product management MBA intern'],['Built with','Python, SQL, an analytics dashboard with a built-in AI agent'],['Outcome','$100K+ in new sales opportunities']],
      body:`<p>This summer I was a product management intern at IBM, on the zAIOps team. zAIOps builds AI tools that help companies run their IBM Z systems, the mainframes behind a lot of the world's banking, travel and retail. My project sat on the business side of that product: helping the people who sell and shape it make better decisions, faster.</p>
@@ -624,7 +624,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      <h3>Four rounds to get here</h3>
      <div class="tl" aria-label="Design rounds">
        <div><b>Round 1</b><span>Bento grid, changelog, editorial layouts</span></div>
-       <div><b>Round 2</b><span>Magazine and year-in-review. Too self-promotional.</span></div>
+       <div><b>Round 2</b><span>Magazine and year-in-review layouts</span></div>
        <div><b>Round 3</b><span>Quiet, text-only. Too plain.</span></div>
        <div><b>Round 4</b><span>A notebook. Personal, colorful, still easy to skim.</span></div>
      </div>
@@ -642,7 +642,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
        <li><b>Working isn't the same as usable.</b> The Mario Kart passed my tests and still felt broken the first time I played it on the live site. The fix was making a quick tap feel responsive, not rewriting the logic.</li>
        <li><b>Check it where people will see it.</b> Several issues only showed up on a phone or in dark mode.</li>
      </ul>`},
-    {id:'langs',size:'s-mid',c:'teal',tag:'life',time:'2 min',tilt:'-2deg',
+    {id:'langs',size:'s-wide',c:'teal',tag:'life',time:'2 min',tilt:'-2deg',
      t:'नमस्ते, Hola, Hallo, Olá',d:'Hindi, English, Spanish, German and some new Portuguese.',
      body:`<p class="lx-intro">The languages I speak, in the order I learned them. Tap a greeting to hear it.</p>
      <ol class="lx">
@@ -652,8 +652,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
        <li class="c-forest" style="--r:.6deg"><span class="n" aria-hidden="true">4</span><div class="card"><div class="top"><button type="button" class="hi" data-say="Hallo" data-lang="de-DE" lang="de">Hallo<span class="say" lang="en">▶ hear it</span></button><span class="when">Intermediate</span></div><div class="name">German <span class="pips" role="img" aria-label="2 out of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></div><p>Learning it with my brother for the past two years.</p></div></li>
        <li class="c-teal" style="--r:-.5deg"><span class="n" aria-hidden="true">5</span><div class="card"><div class="top"><button type="button" class="hi" data-say="Olá" data-lang="pt-BR" lang="pt">Olá<span class="say" lang="en">▶ hear it</span></button><span class="when">Beginner</span></div><div class="name">Portuguese <span class="pips" role="img" aria-label="1 out of 5"><i class="on"></i><i></i><i></i><i></i><i></i></span></div><p>Started recently, ahead of three weeks in Brazil for an MIT project.</p></div></li>
      </ol>`},
-    {id:'sticker',size:'s-sm sticker',c:'rust',t:'say hi!',about:true},
-    {id:'coffee',size:'s-mid',c:'mustard',tag:'life',time:'2 min',tilt:'-1.5deg',
+    {id:'coffee',size:'s-wide',c:'mustard',tag:'life',time:'2 min',tilt:'-1.5deg',
      t:'The Cambridge coffee map',d:'Where to get a good latte around Cambridge and Boston.',
      body:`<p>Grad school runs on coffee and so do I. My usual order is a latte. Here's the map I'm working through. Tap a pin, or let it choose for you.</p>
      <div class="cmap" data-cmap>
@@ -667,7 +666,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      <div class="cnote" aria-live="polite"><div data-cnote><small>pick a pin</small><strong>Where to?</strong><p>Six spots, three on each side of the river.</p></div><button type="button" class="cpick" data-cpick>pick my coffee for me</button></div>
      <p class="cap">Not to scale. Very much not to scale.</p>
      <p class="side">recommendations welcome!</p>`},
-    {id:'sloan',page:true,size:'s-mid',c:'forest',tag:'school',time:'4 min',tilt:'-1deg',
+    {id:'sloan',page:true,size:'s-wide',c:'forest',tag:'school',time:'4 min',tilt:'-1deg',
      t:'Life at Sloan, so far',d:'Why I chose MIT, what I\'m studying, and where to find me outside class.',
      glance:[['Program','MIT Sloan MBA, Class of 2027'],['Studying','Technology, product management and finance'],['Leading','Community Building Chair · VP, Product Management Club · Product, Tech &amp; AI Conference'],['Teaching','TA for Communication and Product Management Lab, Fall 2026']],
      body:`<p class="pull">I chose MIT because I love tech, and because I'm surrounded by brilliant professors and classmates I can learn from every single day.</p>
@@ -708,6 +707,7 @@ body.editing :is(.cover-title h1,.cover-title p,.now li,.art-hero h1,.art-hero .
      </div>
      <p>Twelve days last winter, and this season starts with the big one: skiing in Austria at the end of January. If you've got a run or a hut I shouldn't miss, tell me.</p>
      <p class="side">first chair &gt; sleeping in</p>`},
+    {id:'sticker',size:'s-sm sticker',c:'rust',t:'say hi!',about:true},
   ];
   const about={c:'mustard',tag:'about',t:'Hi, I\'m Aditi',d:'Product person, MBA student, coffee drinker.',
     body:`<p>I work on products, usually somewhere between the tech, the business and the people using it. Right now I'm at Wadanova and finishing my MBA at MIT Sloan. Before that I spent four years at Deloitte and studied CS and economics at Rutgers.</p>
